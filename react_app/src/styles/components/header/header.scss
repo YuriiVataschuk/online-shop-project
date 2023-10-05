@@ -1,0 +1,36 @@
+@import '../../MQ/breakpoints.scss';
+
+.header {
+  position: absolute;
+  width: 100%;
+  z-index: 100;
+
+  &__logo {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 30px 30px 0;
+    border-bottom: 2px solid #fff;
+    width: fit-content;
+    animation-name: width_animation;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+
+    @include sm {
+      border-bottom: 2px solid gray;
+    }
+  }
+}
+
+@keyframes width_animation {
+  0% {
+    width: 10%;
+  }
+
+  30% {
+    width: 60%;
+  }
+  100% {
+    width: 100%;
+  }
+}

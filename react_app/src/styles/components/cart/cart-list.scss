@@ -1,0 +1,15 @@
+.cart__list {
+  display: block;
+  max-height: 530px;
+  padding-top: 40px;
+  overflow: scroll;
+  &--title {
+    margin-bottom: 40px;
+  }
+
+  list-style: none;
+  width: 100%;
+  min-height: 200px;
+  border-bottom: 2px solid black;
+  margin-bottom: 40px;
+}

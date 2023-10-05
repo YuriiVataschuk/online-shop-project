@@ -1,0 +1,33 @@
+@import './cart-item.scss';
+@import './cart-list.scss';
+@import './cart-total.scss';
+
+.cart {
+  position: absolute;
+  right: 0;
+  max-width: 80vw;
+  min-width: 350px;
+  background-color: #fff;
+  z-index: 1000;
+  height: 100vh;
+  transition: all 0.5s ease;
+  overflow: scroll;
+  box-sizing: border-box;
+
+  &__title {
+    display: block;
+    width: 100%;
+    border: none;
+    text-decoration: none;
+    color: black;
+    background-color: #fff;
+    font-weight: 400;
+    font-size: 20px;
+    padding: 11px 0;
+    border-bottom: 2px solid gray;
+  }
+
+  &__panel {
+    padding: 0 40px;
+  }
+}

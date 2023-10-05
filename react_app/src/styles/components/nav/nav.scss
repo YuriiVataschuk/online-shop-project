@@ -1,0 +1,24 @@
+@import '../../MQ/breakpoints.scss';
+@import './nav-item.scss';
+
+.nav {
+  &__list {
+    display: flex;
+    list-style: none;
+    width: fit-content;
+    margin: 0 auto;
+    transition: right 0.3s ease;
+
+    @include sm {
+      position: absolute;
+      top: 0;
+      right: 0;
+      flex-direction: column;
+      max-width: 80vw;
+      min-width: 350px;
+      height: 100vh;
+      background-color: #fff;
+      padding-top: 80px;
+    }
+  }
+}

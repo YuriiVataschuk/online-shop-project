@@ -1,0 +1,27 @@
+@import '../MQ/breakpoints.scss';
+.top-actions {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: fit-content;
+  right: 30px;
+  z-index: 1000;
+
+  & span {
+    color: #fff;
+
+    @include sm {
+      color: black;
+    }
+  }
+
+  &__show-nav {
+    display: none;
+
+    @include sm {
+      display: block;
+      cursor: pointer;
+    }
+  }
+}
