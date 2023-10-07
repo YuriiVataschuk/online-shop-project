@@ -9,8 +9,6 @@ router.register("products", ProductViewSet)
 router.register("sizes", SizeViewSet)
 router.register("categories", CategoryViewSet)
 
-urlpatterns = [
-    path("", include(router.urls))
-]
+urlpatterns = [path("", include(router.urls))]
 
 app_name = "shop"
