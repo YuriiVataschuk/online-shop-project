@@ -1,18 +1,21 @@
+import { Link, useLocation } from 'react-router-dom'
+
 /* eslint-disable react/prop-types */
 type Props = {
   place?: 'header' | 'footer'
 }
 
-export const Logo: React.FC<Props> = ({ place = 'footer' }) => {
+export const Logo: React.FC<Props> = () => {
+  const path = useLocation().pathname
   return (
-    <div className="logo">
+    <Link to="/" className="logo">
       <h1
         style={{
-          color: place === 'header' ? 'black' : '#fff',
+          color: path === '/' ? 'black' : '#fff',
         }}
       >
         LOGO
       </h1>
-    </div>
+    </Link>
   )
 }

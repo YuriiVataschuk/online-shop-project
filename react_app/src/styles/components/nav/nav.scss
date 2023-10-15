@@ -7,18 +7,49 @@
     list-style: none;
     width: fit-content;
     margin: 0 auto;
-    transition: right 0.3s ease;
+    transition: top 0.3s ease;
 
-    @include sm {
-      position: absolute;
-      top: 0;
-      right: 0;
-      flex-direction: column;
-      max-width: 80vw;
-      min-width: 350px;
-      height: 100vh;
-      background-color: #fff;
-      padding-top: 80px;
+    &--mobile-header {
+      @include sm {
+        position: absolute;
+        top: 0;
+        right: 0;
+        flex-direction: column;
+        max-width: 80vw;
+        min-width: 350px;
+        height: 100vh;
+        background-color: #fff;
+        padding-top: 80px;
+        z-index: 100;
+        box-shadow:
+          0 4px 12px rgba(45, 44, 44, 0.2),
+          0 4px 12px rgba(45, 44, 44, 0.2);
+
+        & a {
+          color: black;
+        }
+      }
+    }
+
+    &--mobile-footer {
+      font-size: 11px;
+      @include sm {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0;
+        padding-top: 80px;
+      }
+
+      @include md {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0;
+        padding-top: 80px;
+
+        & a {
+          font-size: 14px;
+        }
+      }
     }
   }
 }

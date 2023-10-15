@@ -7,10 +7,6 @@
   color: #fff;
   text-decoration: none;
 
-  @include sm {
-    color: black;
-  }
-
   &::after {
     content: 'xx';
     color: transparent;

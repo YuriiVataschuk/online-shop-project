@@ -1,4 +1,3 @@
-// import { Image } from 'react-bootstrap'
 import Carousel from 'react-bootstrap/Carousel'
 
 export const Baner = () => {
@@ -6,8 +5,8 @@ export const Baner = () => {
     <div className="baner">
       <Carousel>
         <Carousel.Item
-          interval={1000}
-          style={{ height: '100vh', width: '100vw' }}
+          interval={5000}
+          style={{ height: '100vh', width: '100%' }}
         >
           <img
             src="images/baner-1.jpeg"
@@ -20,8 +19,8 @@ export const Baner = () => {
           />
         </Carousel.Item>
         <Carousel.Item
-          interval={1000}
-          style={{ height: '100vh', width: '100vw' }}
+          interval={5000}
+          style={{ height: '100vh', width: '100%' }}
         >
           <img
             src="images/baner-1.jpeg"
@@ -34,8 +33,8 @@ export const Baner = () => {
           />
         </Carousel.Item>
         <Carousel.Item
-          interval={1000}
-          style={{ height: '100vh', width: '100vw' }}
+          interval={5000}
+          style={{ height: '100vh', width: '100%' }}
         >
           <img
             src="images/baner-1.jpeg"

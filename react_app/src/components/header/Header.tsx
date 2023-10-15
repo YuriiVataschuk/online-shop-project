@@ -1,22 +1,23 @@
-// import { useEffect, useState } from 'react'
 import { useEffect, useState } from 'react'
 import { Logo } from '../Logo'
 import { TopActions } from '../TopActions'
 import { Nav } from '../nav/Nav'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useSearchParams } from 'react-router-dom'
+import { useAppSelector } from '../../app/hooks'
 
 const navItems = [
   { path: '/', name: 'home' },
   { path: 'shirts', name: 'SHIRTS' },
   { path: 'sweatshirts', name: 'SWEATSHIRTS' },
-  { path: 'sweatshirts', name: 'SWEATSHIRTS' },
-  { path: 'hoodies', name: 'HOODIES' },
   { path: 'hoodies', name: 'HOODIES' },
 ]
 
 export const Header = () => {
   const path = useLocation().pathname
   const [showNav, setShowNav] = useState(false)
+  const { showCart } = useAppSelector((state) => state.cart)
+  const [params] = useSearchParams()
+  const page = params.get('page')
 
   useEffect(() => {
     setShowNav(false)
@@ -25,7 +26,7 @@ export const Header = () => {
   useEffect(() => {
     const Id = (e: MouseEvent) => {
       const target = e.target as HTMLDivElement
-      console.log(target.className)
+
       if (target.className.includes('nav')) return
 
       setShowNav(false)
@@ -37,14 +38,16 @@ export const Header = () => {
   }, [])
 
   useEffect(() => {
-    const Id = () => window.scrollTo(0, 0)
-
-    if (showNav || path.includes('cart')) {
-      window.addEventListener('scroll', Id)
+    if (showNav || showCart) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'visible'
     }
+  }, [showNav, path, showCart])
 
-    return () => removeEventListener('scroll', Id)
-  }, [showNav, path])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [path, page])
 
   return (
     <header
@@ -58,7 +61,11 @@ export const Header = () => {
         <TopActions setSowNav={() => setShowNav(!showNav)} showNav={showNav} />
         <Logo place="header" />
       </div>
-      <Nav showNav={showNav} items={navItems} />
+      <Nav
+        showNav={showNav}
+        items={navItems}
+        className="nav__list--mobile-header"
+      />
     </header>
   )
 }

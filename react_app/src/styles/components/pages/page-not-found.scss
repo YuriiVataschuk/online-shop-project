@@ -1,0 +1,26 @@
+.page-not-found {
+  background-color: #fff;
+  animation-name: opacity_animation;
+  animation-duration: 1s;
+  padding: 50px;
+  min-height: 50vh;
+  text-align: center;
+
+  &__subtitle {
+    margin-top: 40px;
+    color: gainsboro;
+
+    & span {
+      color: black;
+    }
+  }
+}
+
+@keyframes opacity_animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

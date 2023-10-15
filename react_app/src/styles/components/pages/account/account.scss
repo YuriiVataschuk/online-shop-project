@@ -1,0 +1,104 @@
+@import './personal-data.scss';
+@import '../../../MQ/breakpoints.scss';
+.account {
+  padding: 30px;
+  animation-name: opacity_animation;
+  animation-duration: 2s;
+  background-color: #fff;
+  &__content {
+    display: flex;
+    gap: 30px;
+
+    @include md {
+      flex-direction: column;
+    }
+
+    @include sm {
+      flex-direction: column;
+    }
+  }
+
+  &__title {
+    text-align: center;
+    padding: 80px;
+  }
+
+  &__user {
+    padding-top: 30px;
+    text-align: end;
+    font-size: 20px;
+
+    @include sm {
+      text-align: center;
+    }
+  }
+  &__signout {
+    &--change {
+      display: block;
+      padding: 0;
+      background-color: black;
+      color: #fff;
+      width: 300px;
+      border-radius: 30px;
+      padding: 40px;
+    }
+
+    &--item {
+      list-style-type: none;
+      color: #fff;
+      font-weight: 200;
+      opacity: 0.6;
+
+      &-active {
+        font-weight: 400;
+        opacity: 1;
+      }
+
+      transition: all 0.3s ease;
+
+      &:hover {
+        opacity: 0.6;
+        cursor: pointer;
+      }
+    }
+    & button {
+      width: 300px;
+      padding: 10px 40px;
+      border: 1px solid #fff;
+      font-size: 20px;
+      font-weight: 200;
+      border-radius: 30px;
+      background-color: black;
+      color: #fff;
+      transition: all 0.3s ease;
+      margin-bottom: 80px;
+
+      &:hover {
+        color: black;
+        border-color: black;
+        background-color: #fff;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__data {
+    width: 100%;
+    padding: 0 50px;
+    @include sm {
+      padding: 0;
+    }
+    @include md {
+      padding: 0;
+    }
+  }
+}
+
+@keyframes opacity_animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

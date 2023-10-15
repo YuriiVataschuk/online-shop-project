@@ -1,19 +1,19 @@
-import { Link } from 'react-router-dom'
-import { Button } from '../Button'
+/* eslint-disable react/prop-types */
+import { Link, useLocation } from 'react-router-dom'
+import { CardImage } from './CardImage'
 
-export const Card = () => {
+type Props = {
+  item: any
+}
+
+export const Card: React.FC<Props> = ({ item }) => {
+  const path = useLocation().pathname
   return (
-    <Link to="/" className="card">
+    <Link to={path + '/' + item.id} className="card">
       <div className="card__price">
-        <h1 className="card__price--content">2344 UA</h1>
+        <h1 className="card__price--content">{item.price} UA</h1>
       </div>
-
-      <div className="card__image">
-        <img src="images/test.webp" width="100%" alt="" />
-        <div className="card__button">
-          <Button content="READ MORE" />
-        </div>
-      </div>
+      <CardImage />
     </Link>
   )
 }

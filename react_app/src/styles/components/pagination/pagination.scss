@@ -1,0 +1,14 @@
+@import './pagination-list.scss';
+@import './pagination-item.scss';
+
+.pagination {
+  display: flex;
+  margin: 40px auto 80px;
+
+  gap: 8px;
+  width: fit-content;
+}
+
+.right-button {
+  position: relative;
+}

@@ -1,15 +1,14 @@
+@import '../../MQ/breakpoints.scss';
+
 .cart__list {
   display: block;
-  max-height: 530px;
+  height: 65vh;
   padding-top: 40px;
-  overflow: scroll;
+  overflow-y: scroll;
+  list-style: none;
+  box-shadow: 0 2px 8px rgba(45, 44, 44, 0.2);
+
   &--title {
     margin-bottom: 40px;
   }
-
-  list-style: none;
-  width: 100%;
-  min-height: 200px;
-  border-bottom: 2px solid black;
-  margin-bottom: 40px;
 }
