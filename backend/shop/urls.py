@@ -2,13 +2,23 @@ from django.urls import path, include
 
 from rest_framework import routers
 
-from shop.views import ProductViewSet, SizeViewSet, CategoryViewSet
+from shop.views import ProductViewSet
 
 router = routers.DefaultRouter()
 router.register("products", ProductViewSet)
-router.register("sizes", SizeViewSet)
-router.register("categories", CategoryViewSet)
 
-urlpatterns = [path("", include(router.urls))]
+urlpatterns = [
+    path("", include(router.urls)),
+    path(
+        'products/filter-by-category/',
+        ProductViewSet.as_view({'get': 'filter_by_category'}),
+        name='product-filter-by-category'
+    ),
+    path(
+        'products/filter-by-price/',
+        ProductViewSet.as_view({'get': 'filter_by_price'}),
+        name='product-filter-by-price'
+    )
+]
 
 app_name = "shop"
