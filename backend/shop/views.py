@@ -1,19 +1,28 @@
 from rest_framework import viewsets
+from rest_framework.filters import SearchFilter
 
-from shop.models import Product, Category, Size
-from shop.serializers import ProductSerializer, CategorySerializer, SizeSerializer
+from rest_framework.response import Response
+
+from shop.models import Product
+from shop.serializers import ProductSerializer, ProductListSerializer
 
 
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
+    def get_serializer_class(self):
+        if self.action == "list":
+            return ProductListSerializer
 
-class CategoryViewSet(viewsets.ModelViewSet):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
+        if self.action == "retrieve":
+            return ProductSerializer
+
+        return ProductSerializer
 
 
-class SizeViewSet(viewsets.ModelViewSet):
-    queryset = Size.objects.all()
-    serializer_class = SizeSerializer
+class ProductNameViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['name']
