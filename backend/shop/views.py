@@ -1,4 +1,5 @@
 from rest_framework import viewsets
+from rest_framework.filters import SearchFilter
 
 from rest_framework.response import Response
 
@@ -19,18 +20,9 @@ class ProductViewSet(viewsets.ModelViewSet):
 
         return ProductSerializer
 
-    def filter_by_category(self, request, *args, **kwargs):
-        category = self.request.query_params.get("category")
-        queryset = Product.objects.filter(category=category)
-        serializer = ProductSerializer(queryset, many=True)
-        return Response(serializer.data)
 
-    def filter_by_price(self, request, *args, **kwargs):
-        price = self.request.query_params.get('price')
-        queryset = Product.objects.filter(price=price)
-        serializer = ProductSerializer(queryset, many=True)
-        return Response(serializer.data)
-
-
-
-
+class ProductNameViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filter_backends = [SearchFilter]
+    search_fields = ['name']
