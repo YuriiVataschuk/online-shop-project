@@ -21,8 +21,16 @@ class ProductViewSet(viewsets.ModelViewSet):
         return ProductSerializer
 
 
-class ProductNameViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
-    filter_backends = [SearchFilter]
-    search_fields = ['name']
+class ShirtsViewSet(ProductViewSet):
+    queryset = Product.objects.filter(category='Shirts',)
+    serializer_class = ProductListSerializer
+
+
+class SweatshirtsViewSet(ProductViewSet):
+    queryset = Product.objects.filter(category='Sweatshirts')
+    serializer_class = ProductListSerializer
+
+
+class HoodiesViewSet(ProductViewSet):
+    queryset = Product.objects.filter(category='Hoodies')
+    serializer_class = ProductListSerializer
