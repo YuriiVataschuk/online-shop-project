@@ -44,10 +44,16 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractUser):
-    """A model for User."""
 
     username = None
+    name = models.CharField(max_length=100, blank=True)
+    surname = models.CharField(max_length=100, blank=True)
     email = models.EmailField(_("email adress"), unique=True)
+    phone = models.CharField(max_length=100, blank=True)
+    country = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=100, blank=True)
+    house = models.CharField(max_length=100, blank=True)
+    postcode = models.CharField(max_length=100, blank=True)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

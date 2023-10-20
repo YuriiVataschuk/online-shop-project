@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.settings import api_settings
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
-from users.serializers import UserSerializer, AuthTokenSerializer
+from users.serializers import UserSerializer, AuthTokenSerializer, UserDetailSerializer
 
 
 class CreateTokenView(ObtainAuthToken):
@@ -17,7 +17,7 @@ class CreateUserView(generics.CreateAPIView):
 
 
 class ManageUserView(generics.RetrieveUpdateAPIView):
-    serializer_class = UserSerializer
+    serializer_class = UserDetailSerializer
     authentication_classes = (JWTAuthentication,)
     permission_classes = (IsAuthenticated,)
 

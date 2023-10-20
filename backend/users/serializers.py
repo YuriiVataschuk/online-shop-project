@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = get_user_model()
         fields = ("id", "email", "password", "is_staff")
         read_only_fields = ("id", "is_staff")
-        extra_kwargs = {"password": {"write_only": True, "min_length": 5}}
+        extra_kwargs = {"password": {"write_only": True, "min_length": 5, "required": True}}
 
     def create(self, validated_data: Dict[str, Any]) -> get_user_model():
         return get_user_model().objects.create_user(**validated_data)
@@ -22,8 +22,8 @@ class UserSerializer(serializers.ModelSerializer):
         if password:
             user.set_password(password)
             user.save()
-
-        return user
+        else:
+            return user
 
 
 class AuthTokenSerializer(serializers.Serializer):
@@ -53,3 +53,27 @@ class AuthTokenSerializer(serializers.Serializer):
 
         attrs["user"] = user
         return attrs
+
+
+class UserDetailSerializer(UserSerializer):
+
+    class Meta:
+        model = get_user_model()
+        fields = ("id",
+                  "email",
+                  "password",
+                  "name",
+                  "surname",
+                  "phone",
+                  "country",
+                  "city",
+                  "house",
+                  "postcode",
+                  "is_staff")
+        read_only_fields = ("id", "is_staff")
+        extra_kwargs = {"password": {"write_only": True, "min_length": 5, "required": False}}
+
+    def validate_password(self, value):
+        if value is None:
+            return self.initial_data["password"]
+        return value
