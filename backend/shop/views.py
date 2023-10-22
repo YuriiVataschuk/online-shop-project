@@ -1,10 +1,7 @@
 from rest_framework import viewsets
-from rest_framework.filters import SearchFilter
 
-from rest_framework.response import Response
-
-from shop.models import Product
-from shop.serializers import ProductSerializer, ProductListSerializer
+from .models import Product
+from .serializers import ProductSerializer, ProductListSerializer
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -20,17 +17,11 @@ class ProductViewSet(viewsets.ModelViewSet):
 
         return ProductSerializer
 
+    def get_queryset(self):
+        category = self.request.query_params.get("category")
+        queryset = self.queryset
 
-class ShirtsViewSet(ProductViewSet):
-    queryset = Product.objects.filter(category='Shirts',)
-    serializer_class = ProductListSerializer
+        if category:
+            queryset = queryset.filter(category__icontains=category)
 
-
-class SweatshirtsViewSet(ProductViewSet):
-    queryset = Product.objects.filter(category='Sweatshirts')
-    serializer_class = ProductListSerializer
-
-
-class HoodiesViewSet(ProductViewSet):
-    queryset = Product.objects.filter(category='Hoodies')
-    serializer_class = ProductListSerializer
+        return queryset

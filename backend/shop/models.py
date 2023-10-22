@@ -34,3 +34,6 @@ class Product(models.Model):
     category = models.CharField(max_length=50, choices=CATEGORIES)
     size = models.CharField(max_length=10, choices=SIZES)
     photo = models.ImageField(upload_to=product_image_file_path)
+
+    def __str__(self):
+        return self.name
