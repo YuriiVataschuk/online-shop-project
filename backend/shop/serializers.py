@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Product, Cart
+from .models import Product, Cart, Order
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -15,16 +15,17 @@ class ProductListSerializer(ProductSerializer):
         fields = ("id", "name", "price", "discount", "photo")
 
 
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = '__all__'
+
+
 class CartSerializer(serializers.ModelSerializer):
+    orders = OrderSerializer(many=True)
+
     class Meta:
         model = Cart
-        fields = ["id", 'user', 'products']
+        fields = ["id", 'user', 'orders']
 
-    def add_product(self, product):
-        self.instance.products.add(product)
 
-    def remove_product(self, product):
-        self.instance.products.remove(product)
-
-    def clear_cart(self):
-        self.instance.products.clear()
