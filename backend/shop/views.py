@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -32,14 +32,26 @@ class ProductViewSet(viewsets.ModelViewSet):
 class CartViewSet(viewsets.ModelViewSet):
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
+    permission_classes = [permissions.AllowAny]  # Дозволяємо анонімним користувачам створювати корзини
+
+    @action(detail=False, methods=['post'])
+    def create_cart(self, request):
+        if not request.user.is_authenticated:
+            cart = Cart.objects.create()
+            serializer = CartSerializer(cart)
+            return Response(serializer.data, status=201)
+
+        return Response({'message': 'You are already logged in.'}, status=400)
 
     @action(detail=True, methods=['post'])
     def add_product(self, request, pk=None):
         product_id = request.data.get('product_id')
         if product_id is not None:
             product = Product.objects.get(pk=product_id)
-            self.get_object().add_product(product)
-            return Response({'message': 'Product added to cart.'})
+            cart = self.get_object()
+            cart.products.add(product)  # Додаємо продукт до корзини
+            return Response({'message': 'Product added to cart.'}, status=201)
+
         return Response({'message': 'Invalid product ID.'}, status=400)
 
     @action(detail=True, methods=['post'])
@@ -47,11 +59,14 @@ class CartViewSet(viewsets.ModelViewSet):
         product_id = request.data.get('product_id')
         if product_id is not None:
             product = Product.objects.get(pk=product_id)
-            self.get_object().remove_product(product)
-            return Response({'message': 'Product removed from cart.'})
+            cart = self.get_object()
+            cart.products.remove(product)  # Видаляємо продукт з корзини
+            return Response({'message': 'Product removed from cart.'}, status=200)
+
         return Response({'message': 'Invalid product ID.'}, status=400)
 
     @action(detail=True, methods=['post'])
     def clear_cart(self, request, pk=None):
-        self.get_object().clear_cart()
-        return Response({'message': 'Cart cleared.'})
+        cart = self.get_object()
+        cart.products.clear()  # Очищаємо корзину від усіх продуктів
+        return Response({'message': 'Cart cleared.'}, status=200)
