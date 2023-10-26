@@ -1,29 +1,37 @@
-import { Link } from 'react-router-dom'
 import { Logo } from '../Logo'
 import { Nav } from '../nav/Nav'
+import { FooterSocialMedia } from './FooterSocialMedia'
 
 const navItems = [
-  { path: '/', name: 'githab' },
-  { path: 'about', name: 'about' },
-  { path: 'contacts', name: 'contacts' },
+  {
+    path: 'https://github.com/YuriiVataschuk/online-shop-project',
+    name: 'github',
+  },
+  { path: 'return', name: 'return of goods' },
+  { path: 'service', name: 'service department' },
+]
+
+const navItemsHeader = [
+  { path: '/', name: 'home' },
+  { path: 'shirts', name: 'SHIRTS' },
+  { path: 'sweatshirts', name: 'SWEATSHIRTS' },
+  { path: 'sweatshirts', name: 'SWEATSHIRTS' },
+  { path: 'hoodies', name: 'HOODIES' },
+  { path: 'hoodies', name: 'HOODIES' },
 ]
 
 export const Footer = () => {
   return (
     <footer className="footer">
-      <div className="footer__social-media">
-        <Link to="/">
-          <img src="images/inst.svg" alt="instagram" />
-        </Link>
-        <Link to="/">
-          <img src="images/tg.svg" alt="instagram" />
-        </Link>
-        <Link to="/">
-          <img src="images/fb.svg" alt="instagram" />
-        </Link>
+      <Nav items={navItemsHeader} className="nav__list--mobile-footer" />
+      <FooterSocialMedia />
+      <div className="footer__logo">
+        <Logo />
       </div>
-      <Logo />
-      <Nav items={navItems} />
+
+      <div className="footer__nav">
+        <Nav items={navItems} />
+      </div>
     </footer>
   )
 }

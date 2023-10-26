@@ -10,14 +10,21 @@
     justify-content: center;
     margin: 0 auto;
     padding: 30px 30px 0;
-    border-bottom: 2px solid #fff;
+    box-shadow: 0 5px 5px -5px rgba(249, 248, 248, 1);
     width: fit-content;
+    color: transparent;
     animation-name: width_animation;
     animation-duration: 4s;
     animation-fill-mode: forwards;
 
     @include sm {
-      border-bottom: 2px solid gray;
+      margin: 0;
+      padding-bottom: 15px;
+      justify-content: start;
+    }
+    @include md {
+      padding-bottom: 9px;
+      justify-content: start;
     }
   }
 }

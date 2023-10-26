@@ -1,0 +1,51 @@
+@import './image/image.scss';
+@import './panel/panel.scss';
+@import '../../../MQ/breakpoints.scss';
+
+.product-page {
+  animation-name: opacity_animation;
+  animation-duration: 1s;
+  background-color: rgb(14, 14, 14);
+  color: #fff;
+  font-weight: 200;
+  padding-bottom: 150px;
+  &__title {
+    padding: 30px;
+    text-align: center;
+    color: #fff;
+  }
+
+  & span {
+    display: block;
+    color: #bebbbb;
+    margin-bottom: 10px;
+  }
+
+  &__content {
+    min-height: 100vh;
+    display: flex;
+
+    @include sm {
+      flex-direction: column;
+    }
+  }
+
+  &__panel {
+    width: 50%;
+    height: 50vh;
+
+    @include sm {
+      padding: 5vw;
+      width: 100%;
+    }
+  }
+}
+
+@keyframes opacity_animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

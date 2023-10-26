@@ -1,6 +1,7 @@
 .cart__item {
   &--empty {
     font-size: 20px;
+    font-weight: 200;
   }
 
   display: flex;
@@ -47,7 +48,7 @@
     align-items: center;
 
     & span {
-      padding-right: 40px;
+      width: 50px;
     }
 
     & button {

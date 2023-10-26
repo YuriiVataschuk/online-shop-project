@@ -2,7 +2,10 @@
 
 @import './styles/components/pages/home-page.scss';
 @import './styles/components/pages/products-page.scss';
+@import './styles/components/pages/product-page/product-page.scss';
 @import './styles/components/pages/home-page.scss';
+@import './styles/components/pages/account/account.scss';
+@import './styles/components/pages/page-not-found.scss';
 @import './styles/components/logo.scss';
 @import './styles/components/header/header.scss';
 @import './styles/components/nav/nav.scss';
@@ -13,11 +16,35 @@
 @import './styles/components/cart/cart.scss';
 @import './styles/components/card/card.scss';
 @import './styles/components/button.scss';
+@import './styles/components/size-list.scss';
+@import './styles/components/pagination/pagination.scss';
+@import './styles/components/arrow.scss';
+@import './styles/components/modal/modal.scss';
 
-body {
-  font-family: Kanit;
+* {
+  margin: 0;
+  padding: 0;
 }
 
 html {
   scroll-behavior: smooth;
 }
+body {
+  width: 100%;
+  overflow-x: hidden;
+  font-family: Kanit;
+  box-sizing: border-box;
+  background-color: black;
+}
+.disabled {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+a {
+  text-decoration: none;
+}
+
+// .app {
+//   overflow: hidden;
+// }

@@ -1,0 +1,30 @@
+@import './pagination.scss';
+@import './image.arrow.scss';
+@import './../../../../MQ/breakpoints.scss';
+
+.product-page__image {
+  position: relative;
+  width: 50%;
+  height: 90%;
+  padding: 100px;
+  box-sizing: border-box;
+
+  @include sm {
+    width: 100%;
+    padding: 100px;
+  }
+
+  @media (min-width: 360px) and (max-width: 550px) {
+    padding: 30px;
+    width: 100%;
+  }
+
+  @include md {
+    height: 80%;
+    padding: 50px;
+  }
+  @include lg {
+    height: 80%;
+    padding: 50px;
+  }
+}
