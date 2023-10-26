@@ -8,6 +8,7 @@ import { ProductsPage } from './pages/productsPage/ProductsPage'
 import { ProductPage } from './pages/ProductPage/ProductPage'
 import { Account } from './pages/account/Account'
 import { PageNotFound } from './pages/PageNotFound'
+import React from 'react'
 
 const productItems = ['shirts', 'sweatshirts', 'hoodies']
 

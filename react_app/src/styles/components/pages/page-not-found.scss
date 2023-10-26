@@ -6,13 +6,28 @@
   min-height: 50vh;
   text-align: center;
 
+  & h1 {
+    font-weight: 500;
+  }
+
   &__subtitle {
     margin-top: 40px;
     color: gainsboro;
+    font-weight: 300;
 
     & span {
       color: black;
     }
+  }
+
+  &__line {
+    height: 5px;
+    background-color: black;
+    border-radius: 5px;
+
+    margin: 0 auto;
+    margin-top: 150px;
+    transition: all 0.2s ease;
   }
 }
 

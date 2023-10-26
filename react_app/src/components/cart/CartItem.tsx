@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/display-name */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import classNames from 'classnames'
@@ -12,14 +14,14 @@ type Props = {
   item: CartProduct
 }
 
-export const CartItem: React.FC<Props> = ({ item }) => {
+export const CartItem: React.FC<Props> = React.memo(({ item }) => {
   const dispatch = useAppDispatch()
 
   const [quantity, setQuantity] = useState<number>(item.quantity)
   const [size, setSize] = useState<string>(item.size)
   useEffect(() => {
     dispatch(cartActions.setQuantity({ id: item.id, quantity: quantity }))
-  }, [quantity])
+  }, [dispatch, item.id, quantity])
 
   return (
     <div className="cart__item">
@@ -62,4 +64,4 @@ export const CartItem: React.FC<Props> = ({ item }) => {
       </div>
     </div>
   )
-}
+})

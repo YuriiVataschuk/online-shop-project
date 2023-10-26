@@ -2,12 +2,14 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'
 import cartSelector from '../features/cartSelector'
 import productSelector from '../features/productsSelector'
 import personSelector from '../features/personSelector'
+import currentProductSelector from '../features/productSelector'
 
 export const store = configureStore({
   reducer: {
     cart: cartSelector,
     productList: productSelector,
     person: personSelector,
+    product: currentProductSelector,
   },
 })
 

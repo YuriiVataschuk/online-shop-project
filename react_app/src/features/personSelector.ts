@@ -1,21 +1,29 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { loocalStorage } from '../utils/localStorage'
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Person } from '../utils/types'
+import { loocalStorage } from '../utils/localStorage'
+const { value, setValue } = loocalStorage('token', '')
 
-const def = {
-  name: 'Leonid',
-  surname: 'Bondarchuk',
-  email: '',
-  phone: '',
-  country: '',
-  city: '',
-  postcode: '',
-  house: '',
-  active: false,
+export const initPerson = createAsyncThunk('fetch/person', (token: string) => {
+  const url = 'http://127.0.0.1:8000/user/me/'
+
+  return fetch(url, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((r) => r.json())
+})
+
+const initialState: {
+  [key: string]: any
+  loading: boolean
+  person: Person | null
+  token: string
+} = {
+  loading: false,
+  person: null,
+  token: value,
 }
-
-const { value, setValue } = loocalStorage('account', {})
-const initialState: Person | any = value
 
 const personSlice = createSlice({
   name: 'person',
@@ -25,19 +33,34 @@ const personSlice = createSlice({
       state,
       payload: PayloadAction<{ field: string; value: string }>
     ) => {
-      state[payload.payload.field] = payload.payload.value
-      setValue(state)
-    },
-    addPerson: (state, payload: PayloadAction<Person>) => {
-      return (state = payload.payload)
+      if (state.person) {
+        state.person[payload.payload.field] = payload.payload.value
+      }
     },
 
-    signOut: (state) => {
-      state = def
-      setValue(state)
+    setToken: (state, payload: PayloadAction<string>) => {
+      state.token = payload.payload
+      setValue(state.token)
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(initPerson.pending, (state) => {
+      state.loading = false
+    })
+
+    builder.addCase(
+      initPerson.fulfilled,
+      (state, actions: PayloadAction<any>) => {
+        state.person = actions.payload
+        state.loading = false
+      }
+    )
+
+    builder.addCase(initPerson.rejected, (state) => {
+      state.loading = true
+    })
   },
 })
 
-export const { setPersonData, addPerson, signOut } = personSlice.actions
+export const { setPersonData, setToken } = personSlice.actions
 export default personSlice.reducer

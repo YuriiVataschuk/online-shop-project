@@ -1,6 +1,8 @@
 @import './cart-item.scss';
 @import './cart-list.scss';
 @import './cart-total.scss';
+@import './../../../components/cart/checkout/checkout.scss';
+@import './cart-order-item.scss';
 
 .cart {
   position: absolute;

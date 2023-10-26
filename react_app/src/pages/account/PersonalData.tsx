@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react'
 import { PersonalDataItem } from './PersonalDataItem'
+import React from 'react'
 
 type Props = {
   items: string[]

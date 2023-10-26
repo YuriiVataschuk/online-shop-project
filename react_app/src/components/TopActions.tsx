@@ -19,9 +19,11 @@ export const TopActions: React.FC<Props> = ({ setSowNav, showNav }) => {
 
   const person = useAppSelector((state) => state.person)
   const handleShowModal = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (!person.active) {
+    if (person.token) {
+      setShowModal(false)
+    } else {
       e.preventDefault()
-      setShowModal(!showModal)
+      setShowModal(true)
     }
   }
 

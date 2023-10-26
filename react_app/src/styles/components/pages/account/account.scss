@@ -3,7 +3,7 @@
 .account {
   padding: 30px;
   animation-name: opacity_animation;
-  animation-duration: 2s;
+  animation-duration: 3s;
   background-color: #fff;
   &__content {
     display: flex;
@@ -96,6 +96,9 @@
 
 @keyframes opacity_animation {
   0% {
+    opacity: 0;
+  }
+  80% {
     opacity: 0;
   }
   100% {

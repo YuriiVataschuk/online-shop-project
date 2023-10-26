@@ -1,5 +1,5 @@
 export type Person = {
-  [key: string]: string | boolean
+  [key: string]: any
   name: string
   surname: string
   email: string
@@ -8,7 +8,6 @@ export type Person = {
   city: string
   postcode: string
   house: string
-  active: boolean
 }
 
 export type Sort = {
@@ -29,4 +28,10 @@ export interface Product {
 
 export interface CartProduct extends Product {
   path: string
+}
+
+export type User = {
+  email: string
+  password: string
+  repeatedPassword: string
 }
