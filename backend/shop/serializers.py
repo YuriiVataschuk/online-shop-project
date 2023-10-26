@@ -18,14 +18,19 @@ class ProductListSerializer(ProductSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
-        fields = '__all__'
+        fields = ("size", "quantity", "product")
 
 
 class CartSerializer(serializers.ModelSerializer):
-    orders = OrderSerializer(many=True)
+    orders = OrderSerializer(many=True, read_only=False, allow_empty=False)
 
     class Meta:
         model = Cart
-        fields = ["id", 'user', 'orders']
+        fields = '__all__'
 
-
+    def create(self, validated_data):
+        orders_data = validated_data.pop('orders')
+        cart = Cart.objects.create(**validated_data)
+        for order_data in orders_data:
+            Order.objects.create(cart=cart, **order_data)
+        return cart
