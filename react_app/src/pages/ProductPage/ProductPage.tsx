@@ -3,41 +3,55 @@ import { SizeList } from '../../components/SizeList'
 import { Arrow } from './Arrow'
 import { ImagePagination } from './ImagePagination'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as cartActions from '../../features/cartSelector'
+import * as currentProductActions from '../../features/productSelector'
 import classNames from 'classnames'
 
 export const ProductPage = () => {
   const path = useLocation().pathname
   const lastIndex = path.lastIndexOf('/') + 1
   const id = path.slice(lastIndex)
-  const list = useAppSelector((state) => state.productList.products)
-  const cartList = useAppSelector((state) => state.cart.cartList)
-  const item = list[+id]
-  const [size, setSize] = useState(item.size)
-  const [quantity, setqQuantity] = useState(1)
-  const includesInCart = cartList.find((cartItem) => cartItem.id === item.id)
 
+  const cartList = useAppSelector((state) => state.cart.cartList)
+  const { product, loading } = useAppSelector((state) => state.product)
+  const [size, setSize] = useState(product?.size || 'S')
+  const [quantity, setqQuantity] = useState(1)
+  const includesInCart = cartList.find(
+    (cartItem) => cartItem.id === product?.id
+  )
   const dispatch = useAppDispatch()
 
+  useEffect(() => {
+    dispatch(currentProductActions.initProduct(id))
+  }, [path])
+
+
   const addToCartHandler = () => {
-    if (includesInCart) {
-      dispatch(cartActions.removeFromCart(item.id))
+    if (includesInCart && product) {
+      dispatch(cartActions.removeFromCart(product.id))
     } else {
-      dispatch(
-        cartActions.addToCart({
-          ...item,
-          size: size,
-          quantity: quantity,
-          path: path,
-        })
-      )
+      if (product !== null)
+        dispatch(
+          cartActions.addToCart({
+            ...product,
+            size: size,
+            quantity: quantity,
+            path: path,
+            image: 'images/test.webp',
+          })
+        )
     }
   }
 
   return (
-    <main className="product-page">
-      <h1 className="product-page__title">{item.name}</h1>
+    <main
+      className="product-page"
+      style={{
+        opacity: loading ? 1 : 0,
+      }}
+    >
+      <h1 className="product-page__title">{product?.name}</h1>
       <div className="product-page__content">
         <div className="product-page__image">
           <img src="images/test.webp" alt="" width={'100%'} height="100%" />
@@ -50,11 +64,13 @@ export const ProductPage = () => {
           </button>
         </div>
         <div className="product-page__panel">
-          <div className="product-page__price">{item.price} UAH</div>
-          <p className="product-page__description">{item.description}</p>
+          <div className="product-page__price">{product?.price} UAH</div>
+          <p className="product-page__description">{product?.description}</p>
           <div className="product-page__sizes">
             <span>chose a size</span>
-            <SizeList sizes={item.sizes} size={size} setSize={setSize} />
+            {product && (
+              <SizeList sizes={product.sizes} size={size} setSize={setSize} />
+            )}
           </div>
           <span>Quantity</span>
           <div className="product-page__quantity">

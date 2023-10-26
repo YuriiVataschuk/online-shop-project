@@ -1,10 +1,12 @@
+import React from 'react'
+
 /* eslint-disable react/prop-types */
 type Props = {
   path: string
   loading: boolean
 }
 
-const getTitle = (path: string) => {
+export const getTitle = (path: string) => {
   const sliceHomePage = path.slice(1)
   const index = sliceHomePage.indexOf('?')
   return sliceHomePage.slice(0, index)

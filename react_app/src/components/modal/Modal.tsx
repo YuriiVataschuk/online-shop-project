@@ -14,24 +14,24 @@ function validatePassword(value: string) {
   return PASSWORD_REGEXP.test(value)
 }
 
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as personActions from '../../features/personSelector'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from '../../app/hooks'
+import { signInFetch } from '../../utils/fetch/signIn'
+import { signUpFetch } from '../../utils/fetch/signUp'
+import { User } from '../../utils/types'
+import { Loader } from '../loader/Loader'
+import { Button } from '../Button'
 
 type Props = {
   showModal: boolean
   setShowModal: () => void
 }
-type DefaultUser = {
-  email: string
-  password: string
-  repeatedPassword: string
-}
 
-const defaultUser: DefaultUser = {
-  email: '',
-  password: '',
+const defaultUser: User = {
+  email: 'Ln@ukr.net',
+  password: '11111111Ll',
   repeatedPassword: '',
 }
 const defaultError = {
@@ -40,24 +40,15 @@ const defaultError = {
   repeatedPassword: false,
 }
 
-const def = {
-  name: 'Leonid',
-  surname: 'Bondarchuk',
-  email: '',
-  phone: '',
-  country: '',
-  city: '',
-  postcode: '',
-  house: '',
-  active: true,
-}
 export const Modal: React.FC<Props> = ({ showModal, setShowModal }) => {
+  const [loading, setLoading] = useState(false)
   const [user, setUser] = useState(defaultUser)
   const [error, setError] = useState(defaultError)
   const [clik, setClick] = useState(false)
   const [signIn, setSignIn] = useState(true)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  const [errorMessage, setErrorMessage] = useState('')
 
   const handleOnChangeEmail = (value: string) => {
     setUser({ ...user, email: value })
@@ -71,13 +62,23 @@ export const Modal: React.FC<Props> = ({ showModal, setShowModal }) => {
 
   const handleSubmit = () => {
     setClick(true)
-    if (!error.password && !error.email) {
-      setClick(false)
-      dispatch(personActions.addPerson(def))
-      setUser(defaultUser)
-      setShowModal()
-      navigate('/account')
+
+    if (!error.password && !error.email && !error.repeatedPassword) {
+      signUpFetch(user).catch((e) => setErrorMessage(e))
     }
+    if (!error.password && !error.email && signIn) {
+      setLoading(true)
+      signInFetch(user)
+        .then((r) => {
+          dispatch(personActions.setToken(r.access))
+          navigate('account')
+        })
+        .finally(() => setLoading(false))
+    }
+
+    setClick(false)
+    setUser(defaultUser)
+    setShowModal()
   }
 
   useEffect(() => {
@@ -138,9 +139,12 @@ export const Modal: React.FC<Props> = ({ showModal, setShowModal }) => {
         </>
       )}
 
-      <button className="account-modal__sign-in" onClick={handleSubmit}>
-        {signIn ? 'SIGN IN' : 'QUICK SIGN UP'}
-      </button>
+      <Button
+        loading={loading}
+        onChange={handleSubmit}
+        content={signIn ? 'SIGN IN' : 'QUICK SIGN UP'}
+      />
+      <p>{errorMessage}</p>
       <button
         className="account-modal__quick"
         onClick={() => setSignIn(!signIn)}

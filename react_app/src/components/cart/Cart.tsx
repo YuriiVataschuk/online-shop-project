@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { CartList } from './CartList'
 import { CartToggle } from './CartToggle'
@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import * as cartActions from '../../features/cartSelector'
 
 export const Cart = () => {
+  const [checkout, setCheckout] = useState(false)
   const dispatch = useAppDispatch()
   const { showCart } = useAppSelector((state) => state.cart)
   const path = useLocation().pathname
@@ -16,10 +17,11 @@ export const Cart = () => {
       const target = e.target as HTMLDivElement
       if (
         target.className.includes('cart') ||
-        target.className.includes('size')
+        target.className.includes('size') ||
+        target.className === 'button'
       )
         return
-
+      setCheckout(false)
       dispatch(cartActions.setShowCart(false))
     }
 
@@ -40,8 +42,8 @@ export const Cart = () => {
       }}
     >
       <CartToggle />
-      <CartList />
-      <CartPanel />
+      <CartList checkout={checkout} />
+      <CartPanel setCheckout={setCheckout} checkout={checkout} />
     </div>
   )
 }

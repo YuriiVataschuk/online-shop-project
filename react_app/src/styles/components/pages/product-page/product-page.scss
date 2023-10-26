@@ -3,12 +3,11 @@
 @import '../../../MQ/breakpoints.scss';
 
 .product-page {
-  animation-name: opacity_animation;
-  animation-duration: 1s;
   background-color: rgb(14, 14, 14);
   color: #fff;
   font-weight: 200;
   padding-bottom: 150px;
+  transition: all 0.5s ease;
   &__title {
     padding: 30px;
     text-align: center;
@@ -38,14 +37,5 @@
       padding: 5vw;
       width: 100%;
     }
-  }
-}
-
-@keyframes opacity_animation {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
   }
 }

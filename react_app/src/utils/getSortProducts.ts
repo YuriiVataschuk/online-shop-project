@@ -1,18 +1,24 @@
-export const getSortProducts = (products: any) => {
+import { Product } from './types'
+
+export const getSortProducts = (products: Product[] = []) => {
   return {
     null: {
       className: '--up',
-      list: [...products],
+      list: products.length ? [...products] : [],
     },
 
     true: {
       className: '--down',
-      list: [...products].sort((a, b) => b.price - a.price),
+      list: products.length
+        ? [...products].sort((a, b) => +b.price - +a.price)
+        : [],
     },
 
     false: {
       className: '--off',
-      list: [...products].sort((a, b) => a.price - b.price),
+      list: products.length
+        ? [...products].sort((a, b) => +a.price - +b.price)
+        : [],
     },
   }
 }

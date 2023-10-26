@@ -8,9 +8,9 @@ type Props = {
 }
 
 export const PersonalDataItem: React.FC<Props> = ({ item, change }) => {
-  const data = useAppSelector((state) => state.person)
+  const { person } = useAppSelector((state) => state.person)
 
-  const [fieldValue, setFieldValue] = useState(data[item])
+  const [fieldValue, setFieldValue] = useState(person ? person[item] : '')
   const dispatch = useAppDispatch()
   useEffect(() => {
     dispatch(personActions.setPersonData({ field: item, value: fieldValue }))
@@ -26,7 +26,7 @@ export const PersonalDataItem: React.FC<Props> = ({ item, change }) => {
           onChange={(e) => setFieldValue(e.target.value)}
         />
       ) : (
-        <div>{data[item]}</div>
+        <div>{person ? person[item] : ''}</div>
       )}
     </li>
   )
