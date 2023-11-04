@@ -45,6 +45,9 @@ class CartSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         orders_data = validated_data.pop('orders')
         cart = Cart.objects.create(**validated_data)
+
         for order_data in orders_data:
-            Order.objects.create(cart=cart, **order_data)
+            order = Order.objects.create(cart=cart, **order_data)
+            cart.orders.add(order)
+
         return cart
