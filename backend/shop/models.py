@@ -7,6 +7,11 @@ from django.utils.text import slugify
 from users.models import User
 
 
+class Description(models.Model):
+    en_description = models.TextField(null=True)
+    ua_description = models.TextField(null=True)
+
+
 def product_image_file_path(instance, filename):
     _, extension = os.path.splitext(filename)
     filename = f"{slugify(instance.name)}-{uuid.uuid4()}{extension}"
@@ -24,9 +29,9 @@ class Product(models.Model):
     name = models.CharField(max_length=255, null=False, blank=False)
     price = models.FloatField()
     discount = models.IntegerField(blank=True, null=True)
-    description = models.TextField()
     category = models.CharField(max_length=50, choices=CATEGORIES)
-    photo = models.ImageField(upload_to=product_image_file_path)
+    photo = models.ImageField(upload_to=product_image_file_path, null=True, blank=True)
+    description = models.OneToOneField(Description, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return self.name
