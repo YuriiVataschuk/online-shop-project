@@ -25,11 +25,11 @@ services:
       - POSTGRES_USER=wckpjlwf
       - POSTGRES_PASSWORD=qSLeN3rgf5YJvTl9yq5uFrdRuWGn8exV
 
-  frontend:
-      build:
-        context: ./react_app
-        dockerfile: Dockerfile
-      image: your-react-app-image
-      container_name: your-react-app
-      ports:
-        - "3000:3000"
+#  frontend:
+#      build:
+#        context: ./react_app
+#        dockerfile: Dockerfile
+#      image: your-react-app-image
+#      container_name: your-react-app
+#      ports:
+#        - "3000:3000"
