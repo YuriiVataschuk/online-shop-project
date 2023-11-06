@@ -3,6 +3,8 @@ import cartSelector from '../features/cartSelector'
 import productSelector from '../features/productsSelector'
 import personSelector from '../features/personSelector'
 import currentProductSelector from '../features/productSelector'
+import informSelector from '../features/informSelector'
+import globalSelector from '../features/globalSelector'
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +12,8 @@ export const store = configureStore({
     productList: productSelector,
     person: personSelector,
     product: currentProductSelector,
+    inform: informSelector,
+    global: globalSelector,
   },
 })
 

@@ -1,0 +1,25 @@
+.checkout {
+  padding: 3px 0;
+  margin-bottom: 40px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+input {
+  width: 95%;
+  padding: 10px 30px;
+  border: none;
+  margin-left: 2.5%;
+  margin-bottom: 10px;
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(0, 0, 0, 0.1) inset;
+  border-radius: 30px;
+  color: #000000;
+  font-size: 15px;
+  line-height: 25px;
+  font-weight: 200;
+  outline-color: rgb(93, 92, 92);
+}

@@ -1,0 +1,20 @@
+.page {
+  animation-name: opacity_animation;
+  animation-duration: 2s;
+  min-height: 100vh;
+  & h1 {
+    background-color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 60px;
+  }
+}
+
+@keyframes opacity_animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

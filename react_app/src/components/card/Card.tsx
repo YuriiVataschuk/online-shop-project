@@ -1,19 +1,27 @@
 /* eslint-disable react/prop-types */
 import { Link, useLocation } from 'react-router-dom'
 import { CardImage } from './CardImage'
+import styles from './card.module.scss'
+import { useAppSelector } from '../../app/hooks'
 
 type Props = {
   item: any
+  place: string
 }
 
-export const Card: React.FC<Props> = ({ item }) => {
+export const Card: React.FC<Props> = ({ item, place }) => {
+  const lang = useAppSelector((state) => state.global)
+  const isEng = lang === 'EN'
+  console.log(place)
   const path = useLocation().pathname
   return (
-    <Link to={path + '/' + item.id} className="card">
-      <div className="card__price">
-        <h1 className="card__price--content">{item.price} UA</h1>
+    <Link to={path + '/' + item.id} className={styles.card}>
+      <div className={styles.price}>
+        <h1>
+          {item.price} {isEng ? 'UAH' : 'ГРН'}
+        </h1>
       </div>
-      <CardImage />
+      <CardImage path={place} />
     </Link>
   )
 }

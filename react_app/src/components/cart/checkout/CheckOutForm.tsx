@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
+import styles from './cart.checkout.module.scss'
+import { useAppSelector } from '../../../app/hooks'
 type Props = {
-  checkout: boolean
+  checkout?: boolean
   setName: (val: string) => void
   setNumber: (val: string) => void
   name: string
@@ -10,7 +12,7 @@ type Props = {
 }
 
 export const CheckOutForm: React.FC<Props> = ({
-  checkout,
+  checkout = true,
   name,
   setName,
   number,
@@ -18,9 +20,12 @@ export const CheckOutForm: React.FC<Props> = ({
   errors,
   submited,
 }) => {
+  console.log(checkout, errors, 'o')
+  const lang = useAppSelector((state) => state.global)
+  const isEng = lang === 'EN'
   return (
     <div
-      className="cart-checkout"
+      className={styles.checkout}
       style={{
         height: checkout ? 'fit-content' : 0,
         marginBottom: checkout ? 40 : 0,
@@ -28,25 +33,17 @@ export const CheckOutForm: React.FC<Props> = ({
     >
       <input
         type="text"
-        placeholder="Name"
+        placeholder={isEng ? 'Name' : "Ім'я"}
         value={name}
         onChange={(e) => setName(e.target.value)}
-        className={
-          submited && (!name || Number(name[0]))
-            ? 'cart-checkout__input danger'
-            : 'cart-checkout__input'
-        }
+        className={submited && (!name || Number(name[0])) ? 'danger' : ''}
       />
       <input
         type="text"
-        className={
-          submited && errors
-            ? 'cart-checkout__input danger'
-            : 'cart-checkout__input'
-        }
+        className={submited && errors ? `danger` : ''}
         value={number}
         onChange={(e) => setNumber(e.target.value)}
-        placeholder="Phone"
+        placeholder={isEng ? 'Phone' : 'Телефон'}
       />
     </div>
   )

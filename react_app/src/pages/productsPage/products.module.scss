@@ -1,0 +1,31 @@
+@import '../../styles/MQ/breakpoints.scss';
+
+.page {
+  background-color: #fff;
+  padding: 30px;
+  margin-bottom: 40px;
+  min-height: 50vh;
+  transition: all 0.5s ease;
+
+  @media (max-width: 500px) {
+    padding: 15px;
+  }
+}
+
+.content {
+  min-height: 70vh;
+}
+
+@keyframes opacity_animation {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+    background-color: black;
+  }
+  100% {
+    opacity: 1;
+  }
+}

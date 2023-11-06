@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
+import styles from './footer.module.scss'
 
 export const FooterSocialMedia = () => {
   return (
-    <div className="footer__social-media">
+    <div className={styles.socialMedia}>
       <Link to="https://www.instagram.com/andrii.hudyma/" target="_blank">
         <img src="images/inst.svg" alt="instagram" />
       </Link>

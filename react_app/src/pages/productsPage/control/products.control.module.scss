@@ -1,0 +1,20 @@
+@import '../../../styles/MQ/breakpoints.scss';
+
+.control {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+
+  @include sm {
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+  }
+
+  & div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
