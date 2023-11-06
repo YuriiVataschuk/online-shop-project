@@ -3,6 +3,7 @@ from typing import Dict, Any
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import get_user_model, authenticate
 from rest_framework import serializers
+from rest_framework.exceptions import AuthenticationFailed
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -36,7 +37,7 @@ class AuthTokenSerializer(serializers.Serializer):
     )
     token = serializers.CharField(label=_("Token"), read_only=True)
 
-    def validate(self, attrs: Dict[str, Any]) -> Dict[str, Any]:
+    def validate(self, attrs):
         email = attrs.get("email")
         password = attrs.get("password")
 
@@ -45,11 +46,9 @@ class AuthTokenSerializer(serializers.Serializer):
                 request=self.context.get("request"), email=email, password=password
             )
             if not user:
-                msg = _("Unable to log in with provided credentials.")
-                raise serializers.ValidationError(msg, code="authorization")
+                raise AuthenticationFailed(_("Unable to log in with provided credentials."))
         else:
-            msg = _('Must include "username" and "password".')
-            raise serializers.ValidationError(msg, code="authorization")
+            raise AuthenticationFailed(_('Must include "email" and "password".'))
 
         attrs["user"] = user
         return attrs

@@ -22,6 +22,19 @@ class ProductSerializer(serializers.ModelSerializer):
         product = Product.objects.create(description=description, **validated_data)
         return product
 
+    def update(self, instance, validated_data):
+        description_data = validated_data.get('description', {})
+        if description_data:
+            instance.description.EN = description_data.get('EN', instance.description.EN)
+            instance.description.UA = description_data.get('UA', instance.description.UA)
+
+        for attr, value in validated_data.items():
+            if attr != 'description':
+                setattr(instance, attr, value)
+
+        instance.save()
+        return instance
+
 
 class ProductListSerializer(ProductSerializer):
     class Meta:
@@ -44,6 +57,14 @@ class CartSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         orders_data = validated_data.pop('orders')
+        user = self.context['request'].user  # Отримайте поточного користувача з контексту запиту
+
+        # Перевірте, чи користувач увійшов
+        if user.is_authenticated:
+            validated_data['user'] = user
+        else:
+            validated_data['user'] = None
+
         cart = Cart.objects.create(**validated_data)
 
         for order_data in orders_data:
