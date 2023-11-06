@@ -8,8 +8,8 @@ from users.models import User
 
 
 class Description(models.Model):
-    en_description = models.TextField(null=True)
-    ua_description = models.TextField(null=True)
+    EN = models.TextField(null=True)
+    UA = models.TextField(null=True)
 
 
 def product_image_file_path(instance, filename):
