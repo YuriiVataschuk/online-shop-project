@@ -28,16 +28,16 @@ class ProductViewSet(viewsets.ModelViewSet):
         return queryset
 
     def create(self, request, *args, **kwargs):
-        EN = request.data.get('description', {}).get('EN')
-        UA = request.data.get('description', {}).get('UA')
+        en_description = request.data.get('description', {}).get('en_description')
+        ua_description = request.data.get('description', {}).get('ua_description')
 
-        if EN is None or UA is None:
-            return Response({"error": "Both EN and UA are required."},
+        if en_description is None or ua_description is None:
+            return Response({"error": "Both en_description and ua_description are required."},
                             status=status.HTTP_400_BAD_REQUEST)
 
         request.data['description'] = {
-            'EN': EN,
-            'UA': UA,
+            'en_description': en_description,
+            'ua_description': ua_description,
         }
 
         return super().create(request, *args, **kwargs)
