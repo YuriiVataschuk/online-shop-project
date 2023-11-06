@@ -44,11 +44,17 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractUser):
+    GENDERS = (
+        ("Male", "Male"),
+        ("Female", "Female"),
+    )
+
 
     username = None
     name = models.CharField(max_length=100, blank=True)
     surname = models.CharField(max_length=100, blank=True)
     email = models.EmailField(_("email adress"), unique=True)
+    gender = models.CharField(max_length=50, choices=GENDERS)
     phone = models.CharField(max_length=100, blank=True)
     country = models.CharField(max_length=100, blank=True)
     city = models.CharField(max_length=100, blank=True)
