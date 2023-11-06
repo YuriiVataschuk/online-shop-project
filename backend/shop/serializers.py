@@ -6,7 +6,7 @@ from .models import Product, Cart, Order, Description
 class DescriptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Description
-        fields = ('en_description', 'ua_description')
+        fields = ('EN', 'UA')
 
 
 class ProductSerializer(serializers.ModelSerializer):
