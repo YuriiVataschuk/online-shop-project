@@ -5,7 +5,6 @@ const { value, setValue } = loocalStorage('token', '')
 
 export const initPerson = createAsyncThunk('fetch/person', (token: string) => {
   const url = 'http://127.0.0.1:8000/user/me/'
-
   return fetch(url, {
     method: 'GET',
     headers: {
@@ -29,12 +28,9 @@ const personSlice = createSlice({
   name: 'person',
   initialState,
   reducers: {
-    setPersonData: (
-      state,
-      payload: PayloadAction<{ field: string; value: string }>
-    ) => {
+    setPersonData: (state, payload: PayloadAction<Person>) => {
       if (state.person) {
-        state.person[payload.payload.field] = payload.payload.value
+        state.person = payload.payload
       }
     },
 

@@ -11,7 +11,7 @@ export const Logo: React.FC<Props> = () => {
     <Link to="/" className="logo">
       <h1
         style={{
-          color: path === '/' ? 'black' : '#fff',
+          color: '#fff',
         }}
       >
         LOGO

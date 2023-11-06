@@ -1,0 +1,23 @@
+@import '../../styles/MQ/breakpoints.scss';
+
+.baner {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+
+  & img {
+    height: 100vh;
+  }
+
+  @include lg {
+    & img {
+      height: 100%;
+    }
+  }
+}
+
+.bannerProduct {
+  & img {
+    height: 100%;
+  }
+}

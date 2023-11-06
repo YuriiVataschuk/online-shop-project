@@ -1,35 +1,39 @@
+import { useAppSelector } from '../../app/hooks'
 import { Logo } from '../Logo'
 import { Nav } from '../nav/Nav'
 import { FooterSocialMedia } from './FooterSocialMedia'
-
-const navItems = [
-  {
-    path: 'https://github.com/YuriiVataschuk/online-shop-project',
-    name: 'github',
-  },
-  { path: 'return', name: 'return of goods' },
-  { path: 'service', name: 'service department' },
-]
-
-const navItemsHeader = [
-  { path: '/', name: 'home' },
-  { path: 'shirts', name: 'SHIRTS' },
-  { path: 'sweatshirts', name: 'SWEATSHIRTS' },
-  { path: 'sweatshirts', name: 'SWEATSHIRTS' },
-  { path: 'hoodies', name: 'HOODIES' },
-  { path: 'hoodies', name: 'HOODIES' },
-]
+import styles from './footer.module.scss'
 
 export const Footer = () => {
+  const lang = useAppSelector((state) => state.global)
+  const isEng = lang === 'EN'
+  const navItemsHeader = [
+    { path: '/', name: isEng ? 'HOME' : 'ГОЛОВНА' },
+    { path: 'shirts', name: isEng ? 'SHIRTS' : 'ФУТБОЛКИ' },
+    { path: 'sweatshirts', name: isEng ? 'SWEATSHIRTS' : 'СВІТШОТИ' },
+    { path: 'hoodies', name: isEng ? 'HOODIES' : 'ХУДДІ' },
+  ]
+
+  const navItems = [
+    {
+      path: 'https://github.com/YuriiVataschuk/online-shop-project',
+      name: isEng ? 'github' : 'Гітхаб',
+    },
+    { path: 'return', name: isEng ? 'return of goods' : 'Повернення товару' },
+    {
+      path: 'service',
+      name: isEng ? 'service department' : 'сервісний відділ',
+    },
+  ]
   return (
-    <footer className="footer">
-      <Nav items={navItemsHeader} className="nav__list--mobile-footer" />
+    <footer className={styles.footer}>
+      <Nav items={navItemsHeader} className="footer" />
       <FooterSocialMedia />
-      <div className="footer__logo">
+      <div className={styles.logo}>
         <Logo />
       </div>
 
-      <div className="footer__nav">
+      <div className={styles.nav}>
         <Nav items={navItems} />
       </div>
     </footer>

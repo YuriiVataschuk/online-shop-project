@@ -1,14 +1,15 @@
-import { ProductsPageList } from '../ProductsPageList'
+import { ProductsPageList } from './list/ProductsPageList'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import { Pagination } from '../../components/Pagination'
+import { Pagination } from '../../components/pagination/Pagination'
 import React, { useEffect, useMemo, useState } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
 import * as productActions from '../../features/productsSelector'
-import { ProductsPageTitle, getTitle } from './ProductsPageTitle'
+import { ProductsPageTitle, getTitle } from './title/ProductsPageTitle'
 import { sliceProductList } from '../../utils/sliceProducts'
 import { getSortProducts } from '../../utils/getSortProducts'
-import { ProductsControl } from './ProductsControl'
+import { ProductsControl } from './control/ProductsControl'
 import { Product } from '../../utils/types'
+import styles from './products.module.scss'
 
 export const ProductsPage = () => {
   const { products, loading } = useAppSelector((state) => state.productList)
@@ -53,7 +54,7 @@ export const ProductsPage = () => {
 
   return (
     <main
-      className="products-page"
+      className={styles.page}
       style={{
         opacity: loading ? 1 : 0,
       }}
@@ -67,8 +68,10 @@ export const ProductsPage = () => {
         />
       )}
 
-      <div className="products-page__content">
-        {listToRender && <ProductsPageList items={listToRender} />}
+      <div className={styles.content}>
+        {listToRender && (
+          <ProductsPageList items={listToRender} place={pathForFetch} />
+        )}
         {perPage !== 'all' && listToRender.length !== 0 && (
           <Pagination
             paginationLength={paginationLength || products.length / 15}

@@ -1,8 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { Product } from '../utils/types'
-// import { wait } from './productsSelector'
 
-export const initProduct = createAsyncThunk('fetch/products', (id: string) => {
+export const initProduct = createAsyncThunk('fetch/product', (id: string) => {
   return fetch('http://127.0.0.1:8000/api/shop/products/' + id).then((resp) =>
     resp.json()
   )

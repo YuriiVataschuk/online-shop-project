@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom'
+import styles from './nav.module.scss'
+import { DropdownItem } from './dropdown/Dropdown'
 
 type NavItem = {
   path: string
@@ -18,24 +20,29 @@ export const Nav: React.FC<Props> = ({
   className = '',
 }) => {
   return (
-    <nav className="nav">
+    <nav>
       <ul
-        className={`nav__list ${className}`}
+        className={`${styles.list} ${
+          className === 'header' ? styles.listHeader : styles.listFooter
+        }`}
         style={{
           top: showNav ? 0 : '-1000px',
         }}
       >
         {items.map((item) => (
-          <li key={item.name}>
-            <Link
-              to={item.path}
-              className="nav__item"
-              target={item.name === 'github' ? '_blank' : '_self'}
-            >
-              {item.name}
-            </Link>
-          </li>
+          <>
+            <li key={item.name}>
+              <Link
+                to={item.path}
+                className={styles.item}
+                target={item.name === 'github' ? '_blank' : '_self'}
+              >
+                {item.name}
+              </Link>
+            </li>
+          </>
         ))}
+        <li> {className === 'header' && <DropdownItem />}</li>
       </ul>
     </nav>
   )

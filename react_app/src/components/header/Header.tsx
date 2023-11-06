@@ -1,18 +1,20 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Logo } from '../Logo'
-import { TopActions } from '../TopActions'
+import { TopActions } from '../top-actions/TopActions'
 import { Nav } from '../nav/Nav'
 import { useLocation, useSearchParams } from 'react-router-dom'
 import { useAppSelector } from '../../app/hooks'
-
-const navItems = [
-  { path: '/', name: 'home' },
-  { path: 'shirts', name: 'SHIRTS' },
-  { path: 'sweatshirts', name: 'SWEATSHIRTS' },
-  { path: 'hoodies', name: 'HOODIES' },
-]
+import styles from './header.module.scss'
 
 export const Header = () => {
+  const lang = useAppSelector((state) => state.global)
+  const isEng = lang === 'EN'
+  const navItems = [
+    { path: '/', name: isEng ? 'HOME' : 'ГОЛОВНА' },
+    { path: 'shirts', name: isEng ? 'SHIRTS' : 'ФУТБОЛКИ' },
+    { path: 'sweatshirts', name: isEng ? 'SWEATSHIRTS' : 'СВІТШОТИ' },
+    { path: 'hoodies', name: isEng ? 'HOODIES' : 'ХУДДІ' },
+  ]
   const path = useLocation().pathname
   const [showNav, setShowNav] = useState(false)
   const { showCart } = useAppSelector((state) => state.cart)
@@ -27,7 +29,7 @@ export const Header = () => {
     const Id = (e: MouseEvent) => {
       const target = e.target as HTMLDivElement
 
-      if (target.className.includes('nav')) return
+      if (target.className.includes('Nav')) return
 
       setShowNav(false)
     }
@@ -51,21 +53,17 @@ export const Header = () => {
 
   return (
     <header
-      className="header"
+      className={styles.header}
       style={{
         position: path === '/' ? 'absolute' : 'static',
         backgroundColor: path === '/' ? 'transparent' : 'black',
       }}
     >
-      <div className="header__logo">
+      <div className={styles.logo}>
         <TopActions setSowNav={() => setShowNav(!showNav)} showNav={showNav} />
         <Logo place="header" />
       </div>
-      <Nav
-        showNav={showNav}
-        items={navItems}
-        className="nav__list--mobile-header"
-      />
+      <Nav showNav={showNav} items={navItems} className="header" />
     </header>
   )
 }
