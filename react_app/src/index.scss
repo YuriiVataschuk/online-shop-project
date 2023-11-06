@@ -1,25 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400;1,500&family=Kanit:wght@300;500;700&family=Montserrat:ital,wght@0,500;1,700&family=Poppins:wght@400;500;700&family=Roboto+Slab:wght@400;500;700&family=Roboto:ital,wght@0,400;0,500;0,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,500;1,700&display=swap');
 
-@import './styles/components/pages/home-page.scss';
-@import './styles/components/pages/products-page.scss';
-@import './styles/components/pages/product-page/product-page.scss';
-@import './styles/components/pages/home-page.scss';
 @import './styles/components/pages/account/account.scss';
-@import './styles/components/pages/page-not-found.scss';
-@import './styles/components/logo.scss';
-@import './styles/components/header/header.scss';
-@import './styles/components/nav/nav.scss';
-@import './styles/components/baner.scss';
 @import '~bootstrap/scss/bootstrap';
-@import './styles/components/top-actions.scss';
-@import './styles/components/footer.scss';
-@import './styles/components/cart/cart.scss';
-@import './styles/components/card/card.scss';
-@import './styles/components/button.scss';
-@import './styles/components/size-list.scss';
-@import './styles/components/pagination/pagination.scss';
 @import './styles/components/arrow.scss';
-@import './styles/components/modal/modal.scss';
 @import './components/loader/loader.scss';
 
 * {
@@ -33,19 +16,29 @@ html {
 body {
   width: 100%;
   overflow-x: hidden;
-  font-family: Kanit;
+  font-family: Roboto;
   box-sizing: border-box;
   background-color: black;
-}
-.disabled {
-  pointer-events: none;
-  opacity: 0.8;
 }
 
 a {
   text-decoration: none;
 }
+li {
+  list-style-type: none;
+}
 
-// .app {
-//   overflow: hidden;
-// }
+.disabled {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.danger {
+  box-shadow:
+    0 1px 4px rgba(245, 88, 88, 0.3),
+    0 0 15px rgba(245, 88, 88, 0.3);
+}
+
+.modal-content {
+  border-radius: 30px;
+}

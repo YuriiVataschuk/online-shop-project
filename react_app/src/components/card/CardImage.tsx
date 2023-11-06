@@ -1,10 +1,17 @@
-import { Button } from '../Button'
+/* eslint-disable react/prop-types */
+import { Button } from '../button/Button'
+import styles from './card.module.scss'
 
-export const CardImage = () => {
+type Props = {
+  path: string
+}
+
+export const CardImage: React.FC<Props> = ({ path }) => {
+  console.log(path, 'path')
   return (
-    <div className="card__image">
-      <img src="images/test.webp" width="100%" alt="" />
-      <div className="card__button">
+    <div className={styles.image}>
+      <img src={`images/shirts/white.png`} width="100%" alt="product img" />
+      <div className={styles.button}>
         <Button content="READ MORE" />
       </div>
     </div>

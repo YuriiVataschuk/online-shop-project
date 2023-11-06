@@ -1,29 +1,46 @@
-import React, { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../app/hooks'
-import * as personActions from '../../features/personSelector'
+import React from 'react'
+import { Person } from '../../utils/types'
+import { useAppSelector } from '../../app/hooks'
 
 type Props = {
   item: string
   change: boolean
+  person: Person | null
+  setPerson: (value: string) => void
 }
 
-export const PersonalDataItem: React.FC<Props> = ({ item, change }) => {
-  const { person } = useAppSelector((state) => state.person)
-
-  const [fieldValue, setFieldValue] = useState(person ? person[item] : '')
-  const dispatch = useAppDispatch()
-  useEffect(() => {
-    dispatch(personActions.setPersonData({ field: item, value: fieldValue }))
-  }, [change])
-
+type Translate = {
+  [key: string]: string
+}
+const translator: Translate = {
+  name: 'імя',
+  surname: 'прізвище',
+  email: 'емейл',
+  phone: 'телефон',
+  country: 'країна',
+  city: 'місто',
+  postcode: 'поштовий індекс',
+  house: 'будинок',
+}
+export const PersonalDataItem: React.FC<Props> = ({
+  item,
+  change,
+  person,
+  setPerson,
+}) => {
+  const lang = useAppSelector((state) => state.global)
+  const isEng = lang === 'EN'
   return (
     <li className="account__personal-data--item">
-      <p>{item}</p>
+      <p>{isEng ? item : translator[item]}</p>
       {change ? (
         <input
           type="text"
-          defaultValue={fieldValue}
-          onChange={(e) => setFieldValue(e.target.value)}
+          defaultValue={person ? person[item] : ''}
+          placeholder={
+            isEng ? 'enter your ' + item : 'введіть ' + translator[item]
+          }
+          onChange={(e) => setPerson(e.target.value)}
         />
       ) : (
         <div>{person ? person[item] : ''}</div>

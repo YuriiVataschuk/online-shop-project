@@ -1,14 +1,16 @@
 /* eslint-disable import/no-unresolved */
 import { Route, Routes } from 'react-router-dom'
-import { Cart } from './components/cart/Cart'
+import { Cart } from './components/cart/cart/Cart'
 import { Footer } from './components/footer/Footer'
 import { Header } from './components/header/Header'
-import { HomePage } from './pages/HomePage'
+import { HomePage } from './pages/home-page/HomePage'
 import { ProductsPage } from './pages/productsPage/ProductsPage'
 import { ProductPage } from './pages/ProductPage/ProductPage'
 import { Account } from './pages/account/Account'
-import { PageNotFound } from './pages/PageNotFound'
+import { PageNotFound } from './pages/404/PageNotFound'
 import React from 'react'
+import { InformList } from './components/inform/informList/InformList'
+import { CallUs } from './components/call-us/CallUs'
 
 const productItems = ['shirts', 'sweatshirts', 'hoodies']
 
@@ -17,6 +19,8 @@ function App() {
     <div className="app">
       <Header />
       <Cart />
+      <InformList />
+      <CallUs />
       <Routes>
         <Route path={'/'} element={<HomePage />} />
         <Route path={'account'} element={<Account />} />
