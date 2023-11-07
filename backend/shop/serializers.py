@@ -2,8 +2,30 @@ import asyncio
 
 from rest_framework import serializers
 
-from .models import Product, Cart, Order, Description
+from .models import Product, Cart, Order, Description, Contact
 from .telegram_bot import send_telegram_message
+
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = "__all__"
+
+    def create(self, validated_data):
+        contact = Contact.objects.create(**validated_data)
+        telegram_token = "6523385208:AAEI_pMY_OJtyB9fXhpFPlY_BO0QjTparAE"
+        # chat_id = "367218363"
+        chat_id = "-4057702799"
+
+        message_text = f"Запит на зворотній зв'язок:\n"
+        for field_name, field_value in validated_data.items():
+            message_text += f"{field_name}: {field_value}\n"
+
+        asyncio.run(send_telegram_message(chat_id, message_text, telegram_token))
+
+        return contact
+
+
 
 
 class DescriptionSerializer(serializers.ModelSerializer):
@@ -74,7 +96,8 @@ class CartSerializer(serializers.ModelSerializer):
             cart.orders.add(order)
 
         telegram_token = "6523385208:AAEI_pMY_OJtyB9fXhpFPlY_BO0QjTparAE"
-        chat_id = "367218363"
+        # chat_id = "367218363"
+        chat_id = "-4057702799"
 
         message_text = f"Створена нова корзина:\n"
         for field_name, field_value in validated_data.items():
