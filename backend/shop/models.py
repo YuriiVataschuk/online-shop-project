@@ -26,12 +26,18 @@ class Product(models.Model):
         ("Hoodies", "Hoodies"),
     )
 
+    COLORS = (
+        ("Black", "Black"),
+        ("White", "White"),
+    )
+
     name = models.CharField(max_length=255, null=False, blank=False)
     price = models.FloatField()
     discount = models.IntegerField(blank=True, null=True)
     category = models.CharField(max_length=50, choices=CATEGORIES)
     photo = models.ImageField(upload_to=product_image_file_path, null=True, blank=True)
     description = models.OneToOneField(Description, on_delete=models.CASCADE, null=True, blank=True)
+    color = models.CharField(max_length=50, choices=COLORS, null=True, blank=True, default="Black")
 
     def __str__(self):
         return self.name
