@@ -54,7 +54,7 @@ class User(AbstractUser):
     name = models.CharField(max_length=100, blank=True)
     surname = models.CharField(max_length=100, blank=True)
     email = models.EmailField(_("email adress"), unique=True)
-    gender = models.CharField(max_length=50, choices=GENDERS)
+    gender = models.CharField(max_length=50, choices=GENDERS, blank=True)
     phone = models.CharField(max_length=100, blank=True)
     country = models.CharField(max_length=100, blank=True)
     city = models.CharField(max_length=100, blank=True)
