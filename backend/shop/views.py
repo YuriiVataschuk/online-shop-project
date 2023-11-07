@@ -1,8 +1,8 @@
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 
-from .models import Product, Cart, Order, Description
-from .serializers import ProductSerializer, ProductListSerializer, CartSerializer, OrderSerializer
+from .models import Product, Cart, Order, Description, Contact
+from .serializers import ProductSerializer, ProductListSerializer, CartSerializer, OrderSerializer, ContactSerializer
 
 
 class ProductViewSet(viewsets.ModelViewSet):
@@ -51,3 +51,8 @@ class OrderViewSet(viewsets.ModelViewSet):
 class CartViewSet(viewsets.ModelViewSet):
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
+
+
+class ContactViewSet(viewsets.ModelViewSet):
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer

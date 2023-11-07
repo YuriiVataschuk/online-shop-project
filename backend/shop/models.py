@@ -61,3 +61,8 @@ class Cart(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False, default="name")
     phone_number = models.CharField(max_length=255, blank=False, null=False, default="number")
     orders = models.ManyToManyField(Order)
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=255)
