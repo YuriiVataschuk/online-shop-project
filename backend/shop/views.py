@@ -1,4 +1,5 @@
 from rest_framework import viewsets, status
+from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from .models import Product, Cart, Order, Description, Contact
@@ -51,6 +52,15 @@ class OrderViewSet(viewsets.ModelViewSet):
 class CartViewSet(viewsets.ModelViewSet):
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
+
+    @action(detail=False, methods=['get'])
+    def user_carts(self, request):
+        if request.user.is_authenticated:
+            queryset = Cart.objects.filter(user=request.user)
+            serializer = CartSerializer(queryset, many=True)
+            return Response(serializer.data)
+        else:
+            return Response([])
 
 
 class ContactViewSet(viewsets.ModelViewSet):
