@@ -12,6 +12,7 @@ router.register("contacts", ContactViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),
+    path("cart/user_carts/", CartViewSet.as_view({'get': 'user_carts'}), name="user_carts"),
 ]
 
 app_name = "shop"

@@ -14,6 +14,7 @@ services:
       - DJANGO_DB_NAME=wckpjlwf
       - DJANGO_DB_USER=wckpjlwf
       - DJANGO_DB_PASSWORD=qSLeN3rgf5YJvTl9yq5uFrdRuWGn8exV
+      - UPLOADS_DIR=/app/uploads
     depends_on:
       - db
 
