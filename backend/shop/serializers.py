@@ -73,4 +73,36 @@ class OrderSerializer(serializers.ModelSerializer):
         fields = ("size", "quantity", "product")
 
 
-с
+class CartSerializer(serializers.ModelSerializer):
+    orders = OrderSerializer(many=True, read_only=False, allow_empty=False)
+
+    class Meta:
+        model = Cart
+        fields = '__all__'
+
+    def create(self, validated_data):
+        orders_data = validated_data.pop('orders')
+        user = self.context['request'].user  # Отримайте поточного користувача з контексту запиту
+
+        if user.is_authenticated:
+            validated_data['user'] = user
+        else:
+            validated_data['user'] = None
+
+        cart = Cart.objects.create(**validated_data)
+
+        for order_data in orders_data:
+            order = Order.objects.create(cart=cart, **order_data)
+            cart.orders.add(order)
+
+        telegram_token = "6523385208:AAEI_pMY_OJtyB9fXhpFPlY_BO0QjTparAE"
+        # chat_id = "367218363"
+        chat_id = "-4057702799"
+
+        message_text = f"Створена нова корзина:\n"
+        for field_name, field_value in validated_data.items():
+            message_text += f"{field_name}: {field_value}\n"
+
+        asyncio.run(send_telegram_message(chat_id, message_text, telegram_token))
+
+        return cart
