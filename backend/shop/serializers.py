@@ -1,5 +1,7 @@
 import asyncio
+from datetime import datetime
 
+import pytz
 from rest_framework import serializers
 
 from .models import Product, Cart, Order, Description, Contact
@@ -14,8 +16,8 @@ class ContactSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         contact = Contact.objects.create(**validated_data)
         telegram_token = "6523385208:AAEI_pMY_OJtyB9fXhpFPlY_BO0QjTparAE"
-        # chat_id = "367218363"
-        chat_id = "-4057702799"
+        chat_id = "367218363"
+        # chat_id = "-4057702799"
 
         message_text = f"Запит на зворотній зв'язок:\n"
         for field_name, field_value in validated_data.items():
@@ -91,17 +93,27 @@ class CartSerializer(serializers.ModelSerializer):
 
         cart = Cart.objects.create(**validated_data)
 
-        for order_data in orders_data:
-            order = Order.objects.create(cart=cart, **order_data)
-            cart.orders.add(order)
+        tz = pytz.timezone('Europe/Kiev')
 
-        telegram_token = "6523385208:AAEI_pMY_OJtyB9fXhpFPlY_BO0QjTparAE"
-        # chat_id = "367218363"
-        chat_id = "-4057702799"
+        current_time = datetime.now(tz)
+
+        formatted_current_time = current_time.strftime("%d.%m.%Y %H:%M")
 
         message_text = f"Створена нова корзина:\n"
         for field_name, field_value in validated_data.items():
             message_text += f"{field_name}: {field_value}\n"
+
+        message_text += f"Дата створення: {formatted_current_time}\n"
+
+        message_text += "Замовлення:\n"
+        for order_data in orders_data:
+            order = Order.objects.create(cart=cart, **order_data)
+            message_text += f"Товар: {order.product.name}, Розмір: {order.size}, Кількість: {order.quantity}\n"
+            cart.orders.add(order)
+
+        telegram_token = "6523385208:AAEI_pMY_OJtyB9fXhpFPlY_BO0QjTparAE"
+        # chat_id = "-4057702799"
+        chat_id = "367218363"
 
         asyncio.run(send_telegram_message(chat_id, message_text, telegram_token))
 
