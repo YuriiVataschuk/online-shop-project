@@ -1,3 +1,4 @@
+import datetime
 import os
 import uuid
 
@@ -61,6 +62,7 @@ class Cart(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False, default="name")
     phone_number = models.CharField(max_length=255, blank=False, null=False, default="number")
     orders = models.ManyToManyField(Order)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class Contact(models.Model):
