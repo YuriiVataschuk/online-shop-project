@@ -1,7 +1,8 @@
-import datetime
+from datetime import datetime
 import os
 import uuid
 
+import pytz
 from django.db import models
 from django.utils.text import slugify
 
@@ -62,7 +63,34 @@ class Cart(models.Model):
     name = models.CharField(max_length=255, blank=False, null=False, default="name")
     phone_number = models.CharField(max_length=255, blank=False, null=False, default="number")
     orders = models.ManyToManyField(Order)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.CharField(max_length=16, blank=True)
+
+    def save(self, *args, **kwargs):
+        tz = pytz.timezone('Europe/Kiev')
+        current_time = datetime.now(tz)
+        formatted_current_time = current_time.strftime("%d.%m.%Y %H:%M")
+        self.created_at = formatted_current_time
+
+        super().save(*args, **kwargs)
+
+    @property
+    def total_price(self):
+        orders = self.orders.all()
+        total_price = 0.0
+        for order in orders:
+            product = order.product
+            if product.discount is not None:
+                total_price += product.price - (product.price * (product.discount / 100)) * order.quantity
+            else:
+                total_price += product.price * order.quantity
+
+        return total_price
+
+
+
+
+
+
 
 
 class Contact(models.Model):
