@@ -28,8 +28,6 @@ class ContactSerializer(serializers.ModelSerializer):
         return contact
 
 
-
-
 class DescriptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Description
@@ -75,8 +73,13 @@ class OrderSerializer(serializers.ModelSerializer):
         fields = ("size", "quantity", "product")
 
 
+class OrderListSerializer(OrderSerializer):
+    product = ProductListSerializer(many=False, read_only=True)
+
+
 class CartSerializer(serializers.ModelSerializer):
     orders = OrderSerializer(many=True, read_only=False, allow_empty=False)
+    total_price = serializers.ReadOnlyField()
 
     class Meta:
         model = Cart
@@ -84,7 +87,7 @@ class CartSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         orders_data = validated_data.pop('orders')
-        user = self.context['request'].user  # Отримайте поточного користувача з контексту запиту
+        user = self.context['request'].user
 
         if user.is_authenticated:
             validated_data['user'] = user
@@ -93,23 +96,19 @@ class CartSerializer(serializers.ModelSerializer):
 
         cart = Cart.objects.create(**validated_data)
 
-        tz = pytz.timezone('Europe/Kiev')
-
-        current_time = datetime.now(tz)
-
-        formatted_current_time = current_time.strftime("%d.%m.%Y %H:%M")
-
         message_text = f"Створена нова корзина:\n"
         for field_name, field_value in validated_data.items():
             message_text += f"{field_name}: {field_value}\n"
 
-        message_text += f"Дата створення: {formatted_current_time}\n"
+        message_text += f"Дата створення: {cart.created_at}\n"
 
         message_text += "Замовлення:\n"
         for order_data in orders_data:
             order = Order.objects.create(cart=cart, **order_data)
             message_text += f"Товар: {order.product.name}, Розмір: {order.size}, Кількість: {order.quantity}\n"
             cart.orders.add(order)
+
+        message_text += f"Загальна вартість корзини: {cart.total_price}\n"
 
         telegram_token = "6523385208:AAEI_pMY_OJtyB9fXhpFPlY_BO0QjTparAE"
         # chat_id = "-4057702799"
@@ -118,3 +117,7 @@ class CartSerializer(serializers.ModelSerializer):
         asyncio.run(send_telegram_message(chat_id, message_text, telegram_token))
 
         return cart
+
+
+class CartListSerializer(CartSerializer):
+    orders = OrderListSerializer(many=True, read_only=True)
