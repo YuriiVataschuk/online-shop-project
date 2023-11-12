@@ -46,7 +46,7 @@ class ProductViewSet(viewsets.ModelViewSet):
 
 
 class OrderViewSet(viewsets.ModelViewSet):
-    queryset = Order.objects.all()
+    queryset = Order.objects.all().select_related('product')
     serializer_class = OrderSerializer
 
     def get_serializer_class(self):
@@ -57,7 +57,7 @@ class OrderViewSet(viewsets.ModelViewSet):
 
 
 class CartViewSet(viewsets.ModelViewSet):
-    queryset = Cart.objects.all()
+    queryset = Cart.objects.all().prefetch_related('orders__product')
     serializer_class = CartSerializer
 
     @action(detail=False, methods=['get'])
