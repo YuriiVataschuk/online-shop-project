@@ -10,15 +10,15 @@ from users.models import User
 
 
 class Description(models.Model):
-    EN = models.TextField(null=True)
-    UA = models.TextField(null=True)
+    EN = models.TextField(null=True, blank=True, default="OK")
+    UA = models.TextField(null=True, blank=True, default="OK")
 
 
 def product_image_file_path(instance, filename):
     _, extension = os.path.splitext(filename)
     filename = f"{slugify(instance.name)}-{uuid.uuid4()}{extension}"
 
-    return os.path.join("uploads", "product", filename)
+    return os.path.join("uploads/product", filename)
 
 
 class Product(models.Model):
@@ -38,7 +38,12 @@ class Product(models.Model):
     discount = models.IntegerField(blank=True, null=True)
     category = models.CharField(max_length=50, choices=CATEGORIES)
     photo = models.ImageField(upload_to=product_image_file_path, null=True, blank=True)
-    description = models.OneToOneField(Description, on_delete=models.CASCADE, null=True, blank=True)
+    description = models.OneToOneField(
+        Description,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=True
+    )
     color = models.CharField(max_length=50, choices=COLORS, null=True, blank=True, default="Black")
 
     def __str__(self):

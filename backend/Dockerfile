@@ -15,6 +15,6 @@ COPY . .
 RUN python manage.py makemigrations
 RUN python manage.py migrate
 
-COPY uploads /app/uploads
+RUN mkdir -p /vol/web/media
 
 CMD ["gunicorn", "--bind", "0.0.0.0:8000", "shopProject.wsgi:application"]

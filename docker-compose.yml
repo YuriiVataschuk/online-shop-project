@@ -9,12 +9,14 @@ services:
     container_name: your-django-app
     ports:
       - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./backend/media:/vol/web/media
     environment:
       - DJANGO_DB_HOST=snuffleupagus.db.elephantsql.com
       - DJANGO_DB_NAME=wckpjlwf
       - DJANGO_DB_USER=wckpjlwf
       - DJANGO_DB_PASSWORD=qSLeN3rgf5YJvTl9yq5uFrdRuWGn8exV
-      - UPLOADS_DIR=/app/uploads
     depends_on:
       - db
 
