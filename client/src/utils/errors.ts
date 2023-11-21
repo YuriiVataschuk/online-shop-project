@@ -44,5 +44,13 @@ export const informs: T = {
       EN: 'An error occurred when entering the personal account.',
       UA: 'Помилка при вході в  особистий кабінет.',
     },
+    paswordNotification: {
+      EN: 'Password must contain at least one digit, one uppercase letter, and be at least 8 characters long.',
+      UA: 'Пароль повинен містити принаймні одну цифру, одну велику літеру і складатися з принаймні 8 символів.',
+    },
+    emailNotification: {
+      EN: 'Please enter an email address in the format provided in the field as an example.',
+      UA: 'Будь ласка, введіть адресу електронної пошти у форматі, який наведено у полі як приклад.',
+    },
   },
 }

@@ -25,9 +25,9 @@ export const Inform: React.FC<Props> = ({ content, type = false }) => {
           dispatch(actionsEr.removeInform())
           return 0
         }
-        return prev - 0.7
+        return prev - 0.15
       })
-    }, 20)
+    }, 10)
   }, [])
 
   return (

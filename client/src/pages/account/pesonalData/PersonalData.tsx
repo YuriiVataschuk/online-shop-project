@@ -25,7 +25,6 @@ export const PersonalData: React.FC<Props> = ({ items, type }) => {
 
   const handleSbmit = () => {
     if (copyPerson) {
-      console.log(token)
       setLoading(true)
       FETCH('PATCH', 'user/me/', copyPerson, token)
         .then((r) => {
@@ -46,7 +45,6 @@ export const PersonalData: React.FC<Props> = ({ items, type }) => {
   }
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    // Якщо натискана клавіша Enter (код 13), викликати метод handleSbmit
     if (event.key === 'Enter') {
       handleSbmit()
     }
@@ -74,7 +72,9 @@ export const PersonalData: React.FC<Props> = ({ items, type }) => {
             change={change}
             person={copyPerson}
             setPerson={(value: string) => {
-              if (person) setCopyPerson({ ...person, [item]: value })
+              if (person && copyPerson) {
+                setCopyPerson({ ...copyPerson, [item]: value })
+              }
             }}
           />
         ))}

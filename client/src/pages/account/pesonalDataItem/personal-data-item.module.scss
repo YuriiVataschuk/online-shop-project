@@ -45,3 +45,31 @@
     background-color: rgb(237, 233, 233);
   }
 }
+
+.genderList {
+  display: flex;
+  gap: 20px;
+  width: 70%;
+}
+
+.genderItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  font-size: 15px;
+  background-color: black;
+  color: #fff;
+  width: 100px;
+  height: 50px;
+  border-radius: 30px;
+}
+
+.genderItem:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.active {
+  opacity: 0.6;
+}

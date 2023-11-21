@@ -6,7 +6,7 @@
 
 const EMAIL_REGEXP =
   /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu
-const PASSWORD_REGEXP = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/
+const PASSWORD_REGEXP = /^(?=.*\d)(?=.*[A-Z])[A-Za-z\d]{8,}$/
 
 function validateEmail(value: string) {
   return EMAIL_REGEXP.test(value)
@@ -76,6 +76,14 @@ export const Modal: React.FC<Props> = ({ showModal, setShowModal }) => {
 
   const handleSubmit = () => {
     setClick(true)
+
+    if (error.password) {
+      writeInform(informs.SignIn.paswordNotification[lang], false)
+    }
+    if (error.email) {
+      writeInform(informs.SignIn.emailNotification[lang], false)
+      return
+    }
 
     if (!error.password && !error.email && !error.repeatedPassword && !signIn) {
       setLoading(true)

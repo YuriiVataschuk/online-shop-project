@@ -59,7 +59,7 @@ export const Form: React.FC<Props> = ({ show, onHide }) => {
           onHide(false)
           writeInform(informs.SendForm.suc[lang], true)
         })
-        .catch(() => writeInform(informs.SendForm.suc[lang], false))
+        .catch(() => writeInform(informs.SendForm.err[lang], false))
         .finally(() => {
           setLoading(false)
         })
