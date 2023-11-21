@@ -120,6 +120,7 @@ export const Account = () => {
               )}`}
             </li>
           </ul>
+
           <Button
             onClick={handleChange}
             content={translateContent('SIGN OUT', 'ВИЙТИ З ПРОФІЛЮ', lang)}

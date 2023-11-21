@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
@@ -156,12 +157,19 @@ export const Modal: React.FC<Props> = ({ showModal, setShowModal }) => {
     }
   }, [showModal])
 
+  const handleEnterKeyPress = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      handleSubmit()
+    }
+  }
+
   return (
     <div
       className={styles.modal}
       style={{
         top: showModal ? 80 : -800,
       }}
+      onKeyDown={handleEnterKeyPress}
     >
       <Close onClick={setShowModal} />
       <p>{translateContent('EMAIL ADDRESS', 'Емейл', lang)}</p>

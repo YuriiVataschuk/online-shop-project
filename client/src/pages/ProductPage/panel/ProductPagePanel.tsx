@@ -10,11 +10,15 @@ import styles from './product-panel.module.scss'
 
 type Props = {
   product: Product | null
+  isBlack: boolean
 }
 
-export const ProductPagePanel: React.FC<Props> = ({ product }) => {
+export const ProductPagePanel: React.FC<Props> = ({ product, isBlack }) => {
   const lang = useAppSelector((state) => state.global)
   const isEng = lang === 'EN'
+  const styleObject = {
+    color: isBlack ? '#fff' : 'black',
+  }
 
   const dispatch = useAppDispatch()
   const cartList = useAppSelector((state) => state.cart.cartList)
@@ -36,7 +40,7 @@ export const ProductPagePanel: React.FC<Props> = ({ product }) => {
             size: size,
             quantity: quantity,
             path: path,
-            image: 'images/shirts/white.png',
+            image: product.photo,
             price: product.price,
           })
         )
@@ -48,19 +52,21 @@ export const ProductPagePanel: React.FC<Props> = ({ product }) => {
         {product?.price} {isEng ? 'UAH' : 'ГРН'}
       </div>
 
-      <span>{isEng ? 'Description:' : 'Опис:'}</span>
+      <span style={styleObject}>{isEng ? 'Description:' : 'Опис:'}</span>
 
       <p className={styles.description}>
         {product?.description[isEng ? 'EN' : 'UA']}
       </p>
 
       <div className={styles.sizes}>
-        <span>{isEng ? 'Chose a size:' : 'Oберіть розмір'} </span>{' '}
+        <span style={styleObject}>
+          {isEng ? 'Chose a size:' : 'Oберіть розмір'}{' '}
+        </span>{' '}
         {product && (
           <SizeList sizes={product.sizes} size={size} setSize={setSize} />
         )}
       </div>
-      <span>{isEng ? 'Quantity:' : 'Кількість'}</span>
+      <span style={styleObject}>{isEng ? 'Quantity:' : 'Кількість'}</span>
       <div className={styles.quantity}>
         <button
           className={classNames({

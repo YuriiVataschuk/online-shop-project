@@ -2,13 +2,13 @@ import { Link, useLocation } from 'react-router-dom'
 import { CardImage } from './CardImage'
 import styles from './card.module.scss'
 import { useAppSelector } from '../../app/hooks'
+import { ListProduct, Product } from '../../utils/types'
 
 type Props = {
-  item: any
-  place: string
+  item: ListProduct
 }
 
-export const Card: React.FC<Props> = ({ item, place }) => {
+export const Card: React.FC<Props> = ({ item }) => {
   const lang = useAppSelector((state) => state.global)
   const isEng = lang === 'EN'
   const path = useLocation().pathname
@@ -19,7 +19,7 @@ export const Card: React.FC<Props> = ({ item, place }) => {
           {item.price} {isEng ? 'UAH' : 'ГРН'}
         </h1>
       </div>
-      <CardImage path={place} />
+      <CardImage photo={item.photo} />
     </Link>
   )
 }

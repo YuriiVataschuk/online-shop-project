@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { Modal } from 'react-bootstrap'
 import { Button } from '../button/Button'
 import { Close } from '../close/Close'

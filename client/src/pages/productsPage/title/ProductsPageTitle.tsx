@@ -16,6 +16,7 @@ const translate: Translate = {
   shirt: 'ФУТБОЛКИ',
   hoodie: 'ХУДІ',
   sweatshirt: 'СВІТШОТИ',
+  bag: 'СУМКИ',
 }
 
 export const getTitle = (path: string) => {

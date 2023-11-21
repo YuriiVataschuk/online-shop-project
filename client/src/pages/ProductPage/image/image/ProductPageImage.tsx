@@ -1,13 +1,10 @@
 import { Baner } from '../../../../components/baner/Baner'
 import styles from './product-image.module.scss'
-const images = [
-  '1.png',
-  '2.1.png',
-  '2.1.png',
-  // 'images/shirts/white.png',
-]
-
-export const ProductPageImage = () => {
+type Props = {
+  image: string
+}
+export const ProductPageImage: React.FC<Props> = ({ image }) => {
+  const images = [image, image, image]
   return (
     <div className={styles.image}>
       <Baner images={images} place="product" />

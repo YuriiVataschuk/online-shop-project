@@ -1,7 +1,7 @@
-import { Product } from './types'
+import { ListProduct } from './types'
 
 export const sliceProductList = (
-  list: Product[],
+  list: ListProduct[],
   page: string,
   perPage: string
 ) => {

@@ -7,7 +7,7 @@ import { ProductsPageTitle, getTitle } from './title/ProductsPageTitle'
 import { sliceProductList } from '../../utils/sliceProducts'
 import { getSortProducts } from '../../utils/getSortProducts'
 import { ProductsControl } from './control/ProductsControl'
-import { Product } from '../../utils/types'
+import { ListProduct, Product } from '../../utils/types'
 import styles from './products.module.scss'
 import * as productActions from '../../features/productsSelector'
 
@@ -49,7 +49,7 @@ export const ProductsPage = () => {
     setSortBy(null)
   }
 
-  const sortObj: { [key: string]: { className: string; list: Product[] } } =
+  const sortObj: { [key: string]: { className: string; list: ListProduct[] } } =
     useMemo(() => getSortProducts(products), [products])
 
   const listToRender = sliceProductList(

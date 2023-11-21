@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import { Button } from '../../button/Button'
@@ -68,13 +69,20 @@ export const CartPanel: React.FC<Props> = ({ checkout, setCheckout }) => {
     }
   }
 
+  const handleEnterKeyPress = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' && !loading) {
+      onSubmit()
+    }
+  }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} onKeyDown={handleEnterKeyPress}>
       <div className={styles.panel}>
         {cartList.length > 0 && (
           <>
-            <p className={styles.total}>{translateContent('TOTAL', 'СУМА', lang)} :</p>
+            <p className={styles.total}>
+              {translateContent('TOTAL', 'СУМА', lang)} :
+            </p>
             <span className={styles.amount}>
               {totalAmount.toFixed(2)} {translateContent('UAH', 'ГРН', lang)}
             </span>

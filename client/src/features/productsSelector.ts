@@ -1,7 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { Product } from '../utils/types'
+import { ListProduct, Product } from '../utils/types'
 
-const cache: { [key: string]: Product[] } = {}
+const cache: { [key: string]: ListProduct[] } = {}
 
 export const initProducts = createAsyncThunk(
   'fetch/products',
@@ -28,7 +28,7 @@ export const initProducts = createAsyncThunk(
 
 const initialState: {
   loading: boolean
-  products: Product[]
+  products: ListProduct[]
 } = {
   loading: false,
   products: [],
@@ -45,7 +45,7 @@ const ProductsSlice = createSlice({
 
     builder.addCase(
       initProducts.fulfilled,
-      (state, action: PayloadAction<Product[]>) => {
+      (state, action: PayloadAction<ListProduct[]>) => {
         state.loading = false
         state.products = action.payload
       }
