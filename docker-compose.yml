@@ -30,7 +30,7 @@ services:
 
 #  frontend:
 #      build:
-#        context: ./react_app
+#        context: ./client
 #        dockerfile: Dockerfile
 #      image: your-react-app-image
 #      container_name: your-react-app
