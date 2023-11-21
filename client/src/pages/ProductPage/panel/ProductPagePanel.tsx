@@ -17,8 +17,15 @@ export const ProductPagePanel: React.FC<Props> = ({ product, isBlack }) => {
   const lang = useAppSelector((state) => state.global)
   const isEng = lang === 'EN'
   const styleObject = {
-    color: isBlack ? '#fff' : 'black',
+    color: isBlack ? 'black' : '#fff',
   }
+
+  console.log(
+    {
+      color: isBlack ? 'black' : '#fff',
+    },
+    isBlack
+  )
 
   const dispatch = useAppDispatch()
   const cartList = useAppSelector((state) => state.cart.cartList)
@@ -54,7 +61,7 @@ export const ProductPagePanel: React.FC<Props> = ({ product, isBlack }) => {
 
       <span style={styleObject}>{isEng ? 'Description:' : 'Опис:'}</span>
 
-      <p className={styles.description}>
+      <p className={styles.description} style={styleObject}>
         {product?.description[isEng ? 'EN' : 'UA']}
       </p>
 

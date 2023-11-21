@@ -33,6 +33,8 @@ export const Orders: React.FC<OrdersProps> = ({ orderHistory }) => {
     setOpenItemIndex((prevIndex) => (prevIndex === index ? null : index))
   }
 
+  console.log(orderHistory)
+
   return (
     <>
       {orderHistory.length ? (

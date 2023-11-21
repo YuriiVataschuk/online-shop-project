@@ -28,14 +28,16 @@ export const ProductPage = () => {
   const { product } = useAppSelector((state) => state.product)
 
   const dispatch = useAppDispatch()
-  const isBlack = product?.color === 'Black?'
+  const isBlack = product?.color === 'Black'
+
+  console.log(isBlack)
 
   return (
     <main
       className={styles.page}
       style={{
         opacity: localLoading ? 0 : 1,
-        backgroundColor: isBlack ? '#dcdada' : 'rgb(19, 19, 19);',
+        backgroundColor: isBlack ? '#dcdada' : 'rgb(19, 19, 19)',
       }}
     >
       <h1
@@ -48,7 +50,7 @@ export const ProductPage = () => {
       </h1>
       <div className={styles.content}>
         {product && <ProductPageImage image={product.photo} />}
-        {product && <ProductPagePanel product={product} isBlack />}
+        {product && <ProductPagePanel product={product} isBlack={isBlack} />}
       </div>
     </main>
   )

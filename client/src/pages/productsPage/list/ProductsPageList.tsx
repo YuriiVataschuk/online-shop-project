@@ -6,10 +6,9 @@ import { ListProduct } from '../../../utils/types'
 
 type Props = {
   items: ListProduct[]
-  place: string
 }
 
-export const ProductsPageList: React.FC<Props> = ({ items = [], place }) => {
+export const ProductsPageList: React.FC<Props> = ({ items = [] }) => {
   return (
     <ul className={styles.list}>
       {items.map((item) => (
