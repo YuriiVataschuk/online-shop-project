@@ -33,8 +33,8 @@ type Props = {
 }
 
 const defaultUser: User = {
-  email: 'Ln@ukr.net',
-  password: '11111111Ll',
+  email: '',
+  password: '',
   repeatedPassword: '',
 }
 const defaultError = {
