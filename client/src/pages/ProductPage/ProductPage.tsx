@@ -13,6 +13,7 @@ export const ProductPage = () => {
   const [localLoading, setLocalLoading] = useState(true)
 
   const fetchProducts = async () => {
+    dispatch(productActions.removeProduct())
     setLocalLoading(true)
     return new Promise((resolve) => {
       setTimeout(async () => {
@@ -27,26 +28,29 @@ export const ProductPage = () => {
   const { product } = useAppSelector((state) => state.product)
 
   const dispatch = useAppDispatch()
+  const isBlack = product?.color === 'Black'
+
+  console.log(isBlack)
 
   return (
     <main
       className={styles.page}
       style={{
         opacity: localLoading ? 0 : 1,
-        backgroundColor: true ? '#dcdada' : 'rgb(19, 19, 19);',
+        backgroundColor: isBlack ? '#dcdada' : 'rgb(19, 19, 19)',
       }}
     >
       <h1
         className={styles.title}
         style={{
-          color: true ? 'black' : '#fff',
+          color: isBlack ? 'black' : '#fff',
         }}
       >
         {product?.name}
       </h1>
       <div className={styles.content}>
-        {product && <ProductPageImage />}
-        {product && <ProductPagePanel product={product} />}
+        {product && <ProductPageImage image={product.photo} />}
+        {product && <ProductPagePanel product={product} isBlack={isBlack} />}
       </div>
     </main>
   )

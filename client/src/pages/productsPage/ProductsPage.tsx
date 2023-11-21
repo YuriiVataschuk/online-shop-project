@@ -7,7 +7,7 @@ import { ProductsPageTitle, getTitle } from './title/ProductsPageTitle'
 import { sliceProductList } from '../../utils/sliceProducts'
 import { getSortProducts } from '../../utils/getSortProducts'
 import { ProductsControl } from './control/ProductsControl'
-import { Product } from '../../utils/types'
+import { ListProduct } from '../../utils/types'
 import styles from './products.module.scss'
 import * as productActions from '../../features/productsSelector'
 
@@ -24,6 +24,7 @@ export const ProductsPage = () => {
 
   const fetchProducts = async (category: string) => {
     setLocalLoading(true)
+    dispatch(productActions.removeProducts())
     return new Promise((resolve) => {
       setTimeout(async () => {
         dispatch(productActions.initProducts(category))
@@ -49,7 +50,7 @@ export const ProductsPage = () => {
     setSortBy(null)
   }
 
-  const sortObj: { [key: string]: { className: string; list: Product[] } } =
+  const sortObj: { [key: string]: { className: string; list: ListProduct[] } } =
     useMemo(() => getSortProducts(products), [products])
 
   const listToRender = sliceProductList(
@@ -75,9 +76,7 @@ export const ProductsPage = () => {
       )}
 
       <div className={styles.content}>
-        {listToRender && (
-          <ProductsPageList items={listToRender} place={pathForFetch} />
-        )}
+        {listToRender && <ProductsPageList items={listToRender} />}
         {perPage !== 'all' && listToRender.length !== 0 && (
           <Pagination
             paginationLength={Math.ceil(products.length / +perPage) || 1}

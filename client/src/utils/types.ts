@@ -24,6 +24,17 @@ export interface Product {
   size: string
   description: any
   price: string
+  photo: string
+  color: string
+}
+
+export interface ListProduct {
+  [key: string]: string | number
+  id: number
+  name: string
+  price: number
+  discount: number
+  photo: string
 }
 
 export interface CartProduct extends Product {

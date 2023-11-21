@@ -7,7 +7,7 @@ import { translateContent } from '../../utils/translate'
 const images = [
   'images/banner1.jpg',
   'images/banner2.jpg',
-  'images/banner3.jpg',
+  'images/banner1.jpg',
 ]
 
 export const HomePage = () => {

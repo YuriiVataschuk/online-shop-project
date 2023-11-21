@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useEffect, useState } from 'react'
 import { PersonalDataItem } from '../pesonalDataItem/PersonalDataItem'
 import { Button } from '../../../components/button/Button'
@@ -24,10 +25,10 @@ export const PersonalData: React.FC<Props> = ({ items, type }) => {
 
   const handleSbmit = () => {
     if (copyPerson) {
+      console.log(token)
       setLoading(true)
       FETCH('PATCH', 'user/me/', copyPerson, token)
         .then((r) => {
-          console.log(r)
           dispatch(personActions.setPersonData(r))
           setChange(!change)
         })
@@ -44,11 +45,19 @@ export const PersonalData: React.FC<Props> = ({ items, type }) => {
     }
   }
 
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    // Якщо натискана клавіша Enter (код 13), викликати метод handleSbmit
+    if (event.key === 'Enter') {
+      handleSbmit()
+    }
+  }
+
   useEffect(() => {
     if (person) setCopyPerson(person)
   }, [person])
+
   return (
-    <div className={styles.data}>
+    <div className={styles.data} onKeyDown={handleKeyDown}>
       <h3>
         {type}
         {!change && (

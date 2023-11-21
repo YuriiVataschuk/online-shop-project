@@ -1,6 +1,6 @@
-import { Product } from './types'
+import { ListProduct, Product } from './types'
 
-export const getSortProducts = (products: Product[] = []) => {
+export const getSortProducts = (products: ListProduct[] = []) => {
   return {
     null: {
       className: '--up',

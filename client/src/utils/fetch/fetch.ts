@@ -13,9 +13,7 @@ export const FETCH = async (
   }
   const r = await fetch('http://127.0.0.1:8000/' + path, {
     method: method,
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers,
     body: JSON.stringify(body),
   })
   return await r.json()

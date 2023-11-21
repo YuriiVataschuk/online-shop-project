@@ -47,12 +47,16 @@
 }
 
 .pages {
+  width: 400px;
+  @include sm {
+    width: 100%;
+  }
   & .nav-list {
     display: block;
     padding: 0;
     background-color: black;
     color: #fff;
-    width: 300px;
+
     border-radius: 30px;
     padding: 40px;
   }
@@ -71,6 +75,10 @@
       cursor: pointer;
     }
   }
+}
+
+.signOutButton {
+  width: 300px;
 }
 
 .loaderContainer {
