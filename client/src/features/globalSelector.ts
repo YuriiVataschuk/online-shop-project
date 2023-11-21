@@ -1,13 +1,17 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-const initialState = 'EN'
+const initialState = localStorage.getItem('language') || 'EN'
 
 const globalSlice = createSlice({
   name: 'global',
   initialState,
   reducers: {
     changeLang: (state, payload: PayloadAction<string>) => {
-      return (state = payload.payload)
+      const newLang = payload.payload
+      state = newLang
+      localStorage.setItem('language', newLang)
+
+      return state
     },
   },
 })
