@@ -54,8 +54,7 @@ export const CartPanel: React.FC<Props> = ({ checkout, setCheckout }) => {
 
     if (!errors && name) {
       FETCH('POST', 'api/shop/cart/', orders, token)
-        .then((r) => {
-          console.log(r, 't')
+        .then(() => {
           writeInform(informs.submitCart.suc[lang])
           dispatch(cartActions.clear())
           dispatch(cartActions.setShowCart(false))

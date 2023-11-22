@@ -30,8 +30,6 @@ export const ProductPage = () => {
   const dispatch = useAppDispatch()
   const isBlack = product?.color === 'Black'
 
-  console.log(isBlack)
-
   return (
     <main
       className={styles.page}

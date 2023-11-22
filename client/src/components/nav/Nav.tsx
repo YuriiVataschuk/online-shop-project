@@ -30,7 +30,7 @@ export const Nav: React.FC<Props> = ({
       >
         {items.map((item) => (
           <>
-            <li key={item.name}>
+            <li key={item.name + new Date()}>
               <Link
                 to={item.path}
                 className={styles.item}

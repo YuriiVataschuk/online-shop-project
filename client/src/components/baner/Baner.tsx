@@ -31,6 +31,7 @@ export const Baner: React.FC<Props> = ({ images, place = 'home-page' }) => {
               height={'100%'}
               style={{
                 objectFit: 'cover',
+                minWidth: 300,
               }}
             />
           </Carousel.Item>

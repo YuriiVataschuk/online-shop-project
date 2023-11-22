@@ -11,7 +11,7 @@ import { PageNotFound } from './pages/404/PageNotFound'
 import { InformList } from './components/inform/informList/InformList'
 import { CallUs } from './components/call-us/CallUs'
 
-const productItems = ['shirts', 'sweatshirts', 'hoodies', 'bags']
+const productItems = ['shirts', 'sweatshirts', 'hoodies', 'bags', 'pants']
 
 function App() {
   return (
@@ -38,6 +38,10 @@ function App() {
           <Route path=":id" element={<ProductPage />} />
         </Route>
         <Route path={productItems[3]}>
+          <Route index element={<ProductsPage />} />
+          <Route path=":id" element={<ProductPage />} />
+        </Route>
+        <Route path={productItems[4]}>
           <Route index element={<ProductsPage />} />
           <Route path=":id" element={<ProductPage />} />
         </Route>

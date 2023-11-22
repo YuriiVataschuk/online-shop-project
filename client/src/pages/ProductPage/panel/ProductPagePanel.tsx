@@ -20,13 +20,6 @@ export const ProductPagePanel: React.FC<Props> = ({ product, isBlack }) => {
     color: isBlack ? 'black' : '#fff',
   }
 
-  console.log(
-    {
-      color: isBlack ? 'black' : '#fff',
-    },
-    isBlack
-  )
-
   const dispatch = useAppDispatch()
   const cartList = useAppSelector((state) => state.cart.cartList)
   const [size, setSize] = useState(product?.size || 'S')

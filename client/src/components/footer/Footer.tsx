@@ -17,6 +17,7 @@ export const Footer = () => {
     },
     { path: 'hoodies', name: translateContent('HOODIES', 'ХУДДІ', lang) },
     { path: 'bags', name: translateContent('BAGS', 'СУМКИ', lang) },
+    { path: 'pants', name: translateContent('PANTS', 'ШТАНИ', lang) },
   ]
 
   const navItems = [

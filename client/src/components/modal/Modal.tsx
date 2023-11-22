@@ -44,6 +44,7 @@ const defaultError = {
 }
 
 export const Modal: React.FC<Props> = ({ showModal, setShowModal }) => {
+  const [eye, setEye] = useState(false)
   const [loading, setLoading] = useState(false)
   const [user, setUser] = useState(defaultUser)
   const [error, setError] = useState(defaultError)
@@ -130,6 +131,7 @@ export const Modal: React.FC<Props> = ({ showModal, setShowModal }) => {
           setClick(false)
           setUser(defaultUser)
           setShowModal()
+          setEye(false)
         })
     }
   }
@@ -189,26 +191,38 @@ export const Modal: React.FC<Props> = ({ showModal, setShowModal }) => {
         onChange={(e) => handleOnChangeEmail(e.target.value)}
       />
       <p>{translateContent('PASSWORD', 'Пароль', lang)}</p>
-      <input
-        className={clik && error.password ? 'danger' : ''}
-        type="password"
-        placeholder={translateContent(
-          'Enter your password',
-          'Введіть пароль',
-          lang
-        )}
-        value={user.password}
-        onChange={(e) => handleOnChangePassword(e.target.value)}
-      />
+      <div className={styles.inputBlock}>
+        <input
+          className={clik && error.password ? 'danger' : ''}
+          type={eye ? 'text' : 'password'}
+          placeholder={translateContent(
+            'Enter your password',
+            'Введіть пароль',
+            lang
+          )}
+          value={user.password}
+          onChange={(e) => handleOnChangePassword(e.target.value)}
+        />
+        <button
+          className={styles.eyeButton}
+          onClick={() => setEye(!eye)}
+          style={{
+            opacity: eye ? 1 : 0.6,
+          }}
+        >
+          <img src="images/eye.png" alt="eye" width={20} />
+        </button>
+      </div>
 
       {!signIn && (
         <>
           <p>
             {translateContent('REPEAT PASSWORD', 'Продублюйте пароль', lang)}
           </p>
+
           <input
             className={clik && error.repeatedPassword ? 'danger' : ''}
-            type="password"
+            type={eye ? 'text' : 'password'}
             placeholder={translateContent(
               'Repeat your password',
               'Продублюйте пароль',
