@@ -26,6 +26,8 @@ class Product(models.Model):
         ("Shirts", "Shirts"),
         ("Sweatshirts", "Sweatshirts"),
         ("Hoodies", "Hoodies"),
+        ("Pants", "Pants"),
+        ("Bags", "Bags"),
     )
 
     COLORS = (
