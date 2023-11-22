@@ -82,6 +82,7 @@ export const Modal: React.FC<Props> = ({ showModal, setShowModal }) => {
       writeInform(informs.SignIn.paswordNotification[lang], false)
     }
     if (error.email) {
+      console.log(informs.SignIn.emailNotification[lang])
       writeInform(informs.SignIn.emailNotification[lang], false)
       return
     }
