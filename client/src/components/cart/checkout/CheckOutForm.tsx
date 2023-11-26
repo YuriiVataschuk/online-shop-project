@@ -1,7 +1,7 @@
-import React from 'react'
 import styles from './cart.checkout.module.scss'
-import { useAppSelector } from '../../../app/hooks'
 import { translateContent } from '../../../utils/translate'
+import { useAppSelector } from '../../../app/hooks'
+
 type Props = {
   checkout?: boolean
   setName: (val: string) => void
@@ -11,6 +11,7 @@ type Props = {
   errors: boolean
   submited: boolean
 }
+const regexpName = /^[a-zA-Z]+$/
 
 export const CheckOutForm: React.FC<Props> = ({
   checkout = true,
@@ -37,7 +38,9 @@ export const CheckOutForm: React.FC<Props> = ({
         value={name}
         onChange={(e) => setName(e.target.value)}
         className={
-          submited && (!name || Number(name[0])) ? 'danger input' : 'input'
+          submited && (!regexpName.test(name.trim()) || Number(name[0]))
+            ? 'danger input'
+            : 'input'
         }
       />
       <input

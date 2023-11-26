@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useEffect, useState } from 'react'
@@ -5,15 +6,27 @@ import styles from './drop-down.module.scss'
 import { useAppDispatch, useAppSelector } from '../../../app/hooks'
 import * as langActions from '../../../features/globalSelector'
 
-export function DropdownItem() {
-  const lang = useAppSelector((state) => state.global)
+type Props = {
+  handleChange?: (value: string) => void
+  value?: string
+  values?: string[]
+}
+export const DropdownItem: React.FC<Props> = ({
+  handleChange,
+  value,
+  values,
+}) => {
+  const lang = value ? value : useAppSelector((state) => state.global)
+  const onChange = handleChange
+    ? handleChange
+    : (item: string) => {
+        dispatch(langActions.changeLang(item))
+        setShow(false)
+      }
+  const items = values ? values : ['EN', 'УКР']
+
   const dispatch = useAppDispatch()
   const [show, setShow] = useState(false)
-
-  const handleChange = (item: string) => {
-    dispatch(langActions.changeLang(item))
-    setShow(false)
-  }
 
   useEffect(() => {
     const Id = (e: MouseEvent) => {
@@ -38,12 +51,11 @@ export function DropdownItem() {
             display: show ? 'block' : 'none',
           }}
         >
-          <li className="item" onClick={() => handleChange('EN')}>
-            EN
-          </li>
-          <li className="item" onClick={() => handleChange('УКР')}>
-            УКР
-          </li>
+          {items.map((item) => (
+            <li className="item" key={item} onClick={() => onChange(item)}>
+              {item}
+            </li>
+          ))}
         </ul>
       }
     </div>

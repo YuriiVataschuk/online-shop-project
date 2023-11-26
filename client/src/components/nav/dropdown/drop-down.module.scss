@@ -4,7 +4,7 @@
 
   button {
     display: block;
-    color: white;
+    color: inherit;
     height: 100%;
     display: flex;
     align-items: center;
@@ -23,8 +23,9 @@
 
   & ul {
     position: absolute;
+    top: 42px;
     background-color: #fff;
-    width: 80px;
+    min-width: 100px;
     padding: 30px 5px;
     border-radius: 10px;
     box-shadow: 0 2px 8px rgba(45, 44, 44, 0.2);
@@ -33,6 +34,8 @@
     & li {
       display: block;
       text-align: center;
+      margin-top: 10px;
+      color: black;
       cursor: pointer;
 
       &::after {

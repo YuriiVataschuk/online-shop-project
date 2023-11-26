@@ -114,8 +114,8 @@ export const Account = () => {
               })}
             >
               {`${!showData ? '-' : ''}${translateContent(
-                'My orders',
-                'Мої замовлення',
+                ' My orders',
+                ' Мої замовлення',
                 lang
               )}`}
             </li>

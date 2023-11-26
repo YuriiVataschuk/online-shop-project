@@ -18,8 +18,7 @@ function App() {
     <div className="app">
       <Header />
       <Cart />
-      <InformList />
-      <CallUs />
+
       <Routes>
         <Route path={'/'} element={<HomePage />} />
         <Route path={'account'} element={<Account />} />
@@ -47,6 +46,8 @@ function App() {
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
+      <InformList />
+      <CallUs />
       <Footer />
     </div>
   )

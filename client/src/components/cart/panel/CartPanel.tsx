@@ -10,7 +10,8 @@ import { FETCH } from '../../../utils/fetch/fetch'
 import { informs } from '../../../utils/errors'
 import { translateContent } from '../../../utils/translate'
 
-const regexp = /^(\+3|)[0-9]{10,11}$/
+const regexp = /^\+380[679]\d{8}$/
+const regexpName = /^[a-zA-Z]+$/
 
 type Props = {
   checkout: boolean
@@ -22,10 +23,11 @@ export const CartPanel: React.FC<Props> = ({ checkout, setCheckout }) => {
   const { token } = useAppSelector((state) => state.person)
   const dispatch = useAppDispatch()
   const [errors, setErrors] = useState(false)
-  const [name, setName] = useState('Leonid')
-  const [number, setNumber] = useState('+380689262855')
+  const [name, setName] = useState('')
+  const [number, setNumber] = useState('+380')
   const [submited, setSubmited] = useState(false)
   const [loading, setLoading] = useState(false)
+  const testName = regexpName.test(name.trim())
   const { cartList } = useAppSelector((state) => state.cart)
   const totalAmount = cartList.reduce((a, c) => a + +c.price * c.quantity, 0)
   const writeInform = (text: string, type = true) => {
@@ -33,9 +35,7 @@ export const CartPanel: React.FC<Props> = ({ checkout, setCheckout }) => {
   }
 
   useEffect(() => {
-    if (submited) {
-      setErrors(regexp.test(number) && number.length === 13 ? false : true)
-    }
+    setErrors(!regexp.test(number))
   }, [submited, name, number])
 
   const onSubmit = () => {
@@ -52,7 +52,16 @@ export const CartPanel: React.FC<Props> = ({ checkout, setCheckout }) => {
     }
     setSubmited(true)
 
-    if (!errors && name) {
+    if (errors) {
+      writeInform(informs.SendForm.incorrectPassword[lang], false)
+    }
+
+    if (!testName) {
+      writeInform(informs.SendForm.incorrectName[lang], false)
+    }
+
+    if (!errors && testName) {
+      setLoading(true)
       FETCH('POST', 'api/shop/cart/', orders, token)
         .then(() => {
           writeInform(informs.submitCart.suc[lang])

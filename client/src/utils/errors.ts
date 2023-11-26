@@ -37,6 +37,14 @@ export const informs: T = {
       EN: 'Error sending data.',
       УКР: 'Помилка при надсиланні данних.',
     },
+    incorrectPassword: {
+      EN: 'Incorrect format of number.',
+      УКР: 'Не коректний формат номеру.',
+    },
+    incorrectName: {
+      EN: 'Name cannot be empty. And must contain only letters.',
+      УКР: "Ім'я не може бути пустим. І має містити тільки літери.",
+    },
   },
   SignIn: {
     suc: {},
@@ -45,8 +53,8 @@ export const informs: T = {
       УКР: 'Помилка при вході в  особистий кабінет.',
     },
     paswordNotification: {
-      EN: 'Password must contain at least one digit, one uppercase letter, and be at least 8 characters long.',
-      УКР: 'Пароль повинен містити принаймні одну цифру, одну велику літеру і складатися з принаймні 8 символів.',
+      EN: 'The password must contain at least one digit, one uppercase letter, and be at least 8 characters long. It may contain no more than one special character.',
+      УКР: 'Пароль повинен містити принаймні одну цифру, одну велику літеру і складатися з принаймні 8 символів. Може містити не більше одного спеціального символу.',
     },
     emailNotification: {
       EN: 'Please enter an email address in the format provided in the field as an example.',

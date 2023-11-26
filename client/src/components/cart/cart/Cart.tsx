@@ -18,6 +18,7 @@ export const Cart = () => {
       const target = e.target as HTMLDivElement
       if (
         target.className.includes('cart') ||
+        target.className.includes('close') ||
         target.className.includes('size') ||
         target.className.includes('input') ||
         target.className.includes('button')

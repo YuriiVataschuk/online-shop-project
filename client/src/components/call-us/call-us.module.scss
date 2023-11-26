@@ -1,5 +1,6 @@
+@import './../../styles/MQ/breakpoints.scss';
 .call {
-  position: fixed;
+  position: sticky;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7,13 +8,17 @@
   width: 80px;
   height: 80px;
   z-index: 120;
-  right: 50px;
+  left: 90%;
   bottom: 100px;
   transition: transform 0.5s ease;
   background-color: #fff;
   animation: shake 5s;
   animation-iteration-count: infinite;
   border: 3px solid black;
+
+  @include sm {
+    left: 75%;
+  }
 
   &:hover {
     cursor: pointer;
@@ -33,13 +38,9 @@
   }
   10% {
     transform: rotate(-10deg) scale(1.1);
-    // transform: ;
-    // background-color: #fff;
   }
   30% {
     transform: rotate(+10deg) scale(1.1);
-    // transform: ;
-    // background-color: #fff;
   }
   100% {
     transform: rotate(0deg);

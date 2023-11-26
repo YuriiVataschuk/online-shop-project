@@ -3,6 +3,7 @@ import { Person } from '../../../utils/types'
 import { useAppSelector } from '../../../app/hooks'
 import styles from './personal-data-item.module.scss'
 import classNames from 'classnames'
+import { DropdownItem } from '../../../components/nav/dropdown/Dropdown'
 
 type Translate = {
   [key: string]: string
@@ -46,32 +47,18 @@ export const PersonalDataItem: React.FC<Props> = ({
       <p>{isEng ? item : translator[item]}</p>
       {change ? (
         item === 'gender' ? (
-          <>
-            <div className={styles.genderList}>
-              <button
-                className={classNames(styles.genderItem, {
-                  [styles.active]: gender === 'Female',
-                })}
-                onClick={() => {
-                  setPerson('Female')
-                  setGender('Female')
-                }}
-              >
-                Female
-              </button>
-              <button
-                className={classNames(styles.genderItem, {
-                  [styles.active]: gender === 'Male',
-                })}
-                onClick={() => {
-                  setGender('Male')
-                  setPerson('Male')
-                }}
-              >
-                Male
-              </button>
-            </div>
-          </>
+          <div
+            style={{
+              color: 'black',
+              border: 'none',
+            }}
+          >
+            <DropdownItem
+              value={person && person[item] ? person[item] : 'chose gender'}
+              values={['Male', 'Female']}
+              handleChange={(value: string) => setPerson(value)}
+            />
+          </div>
         ) : (
           <input
             type="text"

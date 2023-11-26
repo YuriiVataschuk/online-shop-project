@@ -1,3 +1,5 @@
+/* eslint-disable no-useless-escape */
+/* eslint-disable no-debugger */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { Modal } from 'react-bootstrap'
 import { Button } from '../button/Button'
@@ -15,7 +17,8 @@ type Props = {
   show: boolean
 }
 
-const regexp = /^(\+3|)[0-9]{10,11}$/
+const regexp = /^\+380[679]\d{8}$/
+const regexpName = /^[a-zA-Z]+$/
 
 export const Form: React.FC<Props> = ({ show, onHide }) => {
   const [name, setName] = useState('')
@@ -23,6 +26,7 @@ export const Form: React.FC<Props> = ({ show, onHide }) => {
   const [errors, setErrors] = useState(false)
   const [submited, setSubmited] = useState(false)
   const [loading, setLoading] = useState(false)
+  const testName = regexpName.test(name.trim())
   const dispatch = useAppDispatch()
   const lang = useAppSelector((state) => state.global)
 
@@ -37,15 +41,21 @@ export const Form: React.FC<Props> = ({ show, onHide }) => {
   }
 
   useEffect(() => {
-    if (submited) {
-      setErrors(regexp.test(number) && number.length === 13 ? false : true)
-    }
+    setErrors(!regexp.test(number))
   }, [submited, name, number])
 
   const handleSubmit = () => {
     setSubmited(true)
+    if (errors) {
+      writeInform(informs.SendForm.incorrectPassword[lang], false)
+    }
 
-    if (!errors && name) {
+    if (!testName) {
+      writeInform(informs.SendForm.incorrectName[lang], false)
+    }
+    console.log(testName)
+
+    if (!errors && testName) {
       setLoading(true)
       FETCH('POST', 'api/shop/contacts/', {
         name: name,
