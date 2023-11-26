@@ -32,6 +32,8 @@ export const ProductPagePanel: React.FC<Props> = ({ product, isBlack }) => {
   const addToCartHandler = () => {
     if (includesInCart && product) {
       dispatch(cartActions.removeFromCart(product.id))
+      dispatch(cartActions.setShowCart(false))
+      return
     } else {
       if (product !== null)
         dispatch(
@@ -44,6 +46,8 @@ export const ProductPagePanel: React.FC<Props> = ({ product, isBlack }) => {
             price: product.price,
           })
         )
+      dispatch(cartActions.setShowCart(true))
+      window.scroll(0, 0)
     }
   }
   return (

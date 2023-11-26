@@ -27,6 +27,11 @@ export const informs: T = {
       EN: 'Error during registration.',
       УКР: 'Помилка при реєстрації.',
     },
+
+    longPassword: {
+      EN: 'Password is too long. Password must contain between 8 and 25 characters.',
+      УКР: 'Занадто довгий пароль.Пароль має містити від 8 до 25 символів.',
+    },
   },
   SendForm: {
     suc: {
