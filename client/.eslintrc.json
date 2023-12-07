@@ -1,8 +1,7 @@
 {
   "env": {
     "browser": true,
-    "es2021": true,
-    "cypress/globals": true
+    "es2021": true
   },
   "extends": [
     "eslint:recommended",
@@ -22,7 +21,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "react", "cypress"],
+  "plugins": ["@typescript-eslint", "react"],
   "rules": {
     "react/prop-types": "off"
   }
