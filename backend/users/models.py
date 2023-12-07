@@ -49,7 +49,6 @@ class User(AbstractUser):
         ("Female", "Female"),
     )
 
-
     username = None
     name = models.CharField(max_length=100, blank=True)
     surname = models.CharField(max_length=100, blank=True)
