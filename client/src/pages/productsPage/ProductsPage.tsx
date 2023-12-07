@@ -35,6 +35,7 @@ export const ProductsPage = () => {
 
   useEffect(() => {
     fetchProducts(pathForFetch).finally(() => setLocalLoading(false))
+    console.log(pathForFetch)
   }, [path])
 
   const handleSort = (sortBy: null | boolean) => {

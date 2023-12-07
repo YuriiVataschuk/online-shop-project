@@ -11,7 +11,7 @@ export const initProduct = createAsyncThunk(
     }
 
     try {
-      const resp = await fetch(`http://127.0.0.1:8000/api/shop/products/${id}`)
+      const resp = await fetch(`https://online-shop-noih.onrender.com/api/shop/products/${id}`)
       const data = await resp.json()
       cache[id] = data
 

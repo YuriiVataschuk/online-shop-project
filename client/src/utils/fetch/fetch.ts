@@ -11,7 +11,7 @@ export const FETCH = async (
   if (token) {
     headers.Authorization = `Bearer ${token}`
   }
-  const r = await fetch('http://127.0.0.1:8000/' + path, {
+  const r = await fetch('https://online-shop-noih.onrender.com/' + path, {
     method: method,
     headers,
     body: JSON.stringify(body),

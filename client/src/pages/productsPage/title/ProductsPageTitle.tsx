@@ -1,9 +1,8 @@
 import React from 'react'
 import styles from './products.title.module.scss'
 import { useAppSelector } from '../../../app/hooks'
-import { Helmet } from 'react-helmet-async'
+import { Helmet } from 'react-helmet'
 
-/* eslint-disable react/prop-types */
 type Props = {
   path: string
   loading: boolean
