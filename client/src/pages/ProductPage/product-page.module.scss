@@ -1,0 +1,40 @@
+@import '../../styles/MQ/breakpoints.scss';
+
+.page {
+  background-color: rgb(14, 14, 14);
+  color: #fff;
+  font-weight: 200;
+  padding-bottom: 150px;
+  transition: all 0.5s ease;
+  & h1 {
+    padding: 30px;
+    text-align: center;
+    color: #fff;
+  }
+
+  & span {
+    display: block;
+    color: black;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+
+  & .content {
+    min-height: 100vh;
+    display: flex;
+
+    @include sm {
+      flex-direction: column;
+    }
+  }
+
+  & .panel {
+    width: 50%;
+    height: 50vh;
+
+    @include sm {
+      padding: 5vw;
+      width: 100%;
+    }
+  }
+}

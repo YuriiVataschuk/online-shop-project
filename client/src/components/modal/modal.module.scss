@@ -1,0 +1,99 @@
+@import '../../styles/MQ/breakpoints.scss';
+.modal {
+  position: absolute;
+  padding: 30px;
+  right: 0;
+  top: 80px;
+  width: 366px;
+  height: 500px;
+  box-shadow:
+    0 4px 12px rgba(45, 44, 44, 0.2),
+    0 4px 12px rgba(45, 44, 44, 0.2);
+  background-color: #fff;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+
+  @include sm {
+    width: 87vw;
+    max-width: 366px;
+  }
+
+  & img {
+    position: absolute;
+    right: 14px;
+    top: 7px;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 0.6;
+      transform: scale(110%);
+    }
+  }
+
+  & input {
+    display: block;
+    border-color: transparent;
+    width: 100%;
+    background: #f4f6f8;
+    border-radius: 1000px;
+    height: 36px;
+    padding: 0 15px;
+    margin-bottom: 30px;
+    font-weight: 200;
+    outline-color: rgb(93, 92, 92);
+
+    &::placeholder {
+      font-weight: 200;
+    }
+  }
+
+  p {
+    color: #818d92;
+    font-size: 15px;
+    line-height: 25px;
+    text-transform: uppercase;
+    margin: 0;
+    font-weight: 200;
+  }
+}
+
+.signIn {
+  display: block;
+  border: 1px solid white;
+  border-radius: 30px;
+  background-color: black;
+  color: #fff;
+  transition: all 0.3s ease;
+  padding: 8px 50px;
+  margin: 0 auto;
+  cursor: pointer;
+
+  &:hover {
+    border-color: black;
+    color: black;
+    background-color: #fff;
+  }
+}
+
+.quick {
+  display: block;
+  width: fit-content;
+  background-color: transparent;
+  color: #818d92;
+  border: none;
+  cursor: pointer;
+  margin: 0 auto;
+  margin-top: 100px;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.inputBlock {
+  display: flex;
+}
+
+.eyeButton {
+  position: relative;
+}

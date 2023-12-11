@@ -1,0 +1,24 @@
+.cart {
+  position: absolute;
+  right: 0;
+  width: 350px;
+  max-width: 90vw;
+  background-color: #fff;
+  z-index: 1000;
+  height: 100vh;
+  overflow-y: scroll;
+  transition: all 0.5s ease;
+  box-sizing: border-box;
+  padding-bottom: 50px;
+  box-shadow:
+    0 4px 12px rgba(45, 44, 44, 0.2),
+    0 4px 12px rgba(45, 44, 44, 0.2);
+
+  &__panel {
+    padding: 0 40px;
+  }
+
+  &__empty {
+    margin-top: 250px;
+  }
+}

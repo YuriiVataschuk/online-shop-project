@@ -1,0 +1,75 @@
+@import '../../../styles/MQ/breakpoints.scss';
+.item {
+  display: block;
+  margin-bottom: 30px;
+  width: 35%;
+  list-style-type: none;
+
+  @include md {
+    width: 47%;
+  }
+  @include lg {
+    width: 47%;
+  }
+
+  @include sm {
+    width: 100%;
+  }
+
+  & div {
+    display: flex;
+    align-items: end;
+    color: black;
+    height: 42px;
+    padding: 2px 30px;
+    font-size: 25px;
+    font-weight: 200;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgb(237, 233, 233);
+  }
+
+  p {
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 100;
+  }
+
+  & input {
+    height: 30px;
+    width: 80%;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    font-size: 25px;
+    font-weight: 200;
+    padding: 20px;
+    background-color: rgb(237, 233, 233);
+  }
+}
+
+.genderList {
+  display: flex;
+  gap: 20px;
+  width: 70%;
+}
+
+.genderItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  font-size: 15px;
+  background-color: black;
+  color: #fff;
+  width: 100px;
+  height: 50px;
+  border-radius: 30px;
+}
+
+.genderItem:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.active {
+  opacity: 0.6;
+}

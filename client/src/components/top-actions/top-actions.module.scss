@@ -1,0 +1,74 @@
+@import '../../styles/MQ/breakpoints.scss';
+.topActions {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: fit-content;
+  right: 30px;
+  z-index: 1000;
+  transition: all ease;
+
+  & span {
+    color: #fff;
+    font-weight: 300;
+
+    @include sm {
+      color: black;
+    }
+  }
+}
+.cart {
+  position: relative;
+  cursor: pointer;
+  &:hover {
+    transform: scale(110%);
+  }
+}
+
+.cartAmount {
+  position: relative;
+  top: -14px;
+  right: -60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 11px;
+  font-weight: 200;
+}
+
+.account {
+  width: fit-content;
+  transition: all 0.3s ease;
+  &:hover {
+    transform: scale(110%);
+    cursor: pointer;
+  }
+  & .head {
+    margin: 0 auto;
+    width: 13px;
+    height: 13px;
+    border: 1px solid white;
+    border-radius: 50%;
+    margin-top: 10px;
+  }
+  & .body {
+    width: 20px;
+    height: 20px;
+    border-top: 1px solid white;
+    border-radius: 50%;
+  }
+}
+
+.showNav {
+  display: none;
+
+  @include sm {
+    display: block;
+    cursor: pointer;
+  }
+}

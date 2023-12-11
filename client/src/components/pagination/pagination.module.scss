@@ -1,0 +1,52 @@
+@import '../../styles/MQ/breakpoints.scss';
+
+.pagination {
+  display: flex;
+  margin: 40px auto 80px;
+
+  gap: 8px;
+  width: fit-content;
+}
+
+.rightButton {
+  position: relative;
+}
+
+.list {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: fit-content;
+  margin: 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid black;
+  border-radius: 50%;
+  list-style-type: none;
+  transition: all 0.3s ease;
+
+  @include sm {
+    width: 25px;
+    height: 25px;
+  }
+
+  &:hover {
+    border-color: #fff;
+    background-color: black;
+    color: #fff;
+    cursor: pointer;
+    transform: scale(110%);
+  }
+}
+
+.isActive {
+  background-color: black;
+  color: #fff;
+}

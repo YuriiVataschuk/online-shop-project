@@ -1,0 +1,50 @@
+@import './../../styles/MQ/breakpoints.scss';
+.call {
+  position: sticky;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  z-index: 120;
+  left: 90%;
+  bottom: 100px;
+  transition: transform 0.5s ease;
+  background-color: #fff;
+  animation: shake 5s;
+  animation-iteration-count: infinite;
+  border: 3px solid black;
+
+  @include sm {
+    left: 75%;
+  }
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
+
+  & img {
+    border-radius: 50%;
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: scale(100%);
+    transform: rotate(0deg);
+    opacity: 0.95;
+  }
+  10% {
+    transform: rotate(-10deg) scale(1.1);
+  }
+  30% {
+    transform: rotate(+10deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(0deg);
+    opacity: 0.95;
+    border-color: #d5d3d3;
+  }
+}

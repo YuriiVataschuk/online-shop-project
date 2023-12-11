@@ -1,0 +1,62 @@
+@import '../../styles/MQ/breakpoints.scss';
+
+.footer {
+  background-color: black;
+  padding: 20px 30px;
+}
+
+.logo {
+  @include sm {
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 100px;
+  }
+}
+
+.nav {
+  margin-top: 50px;
+  @include sm {
+    margin-top: 200px;
+    & a {
+      font-size: 11px;
+      padding: 15px 2vw;
+    }
+
+    & ul {
+      padding: 0;
+    }
+  }
+}
+
+.socialMedia {
+  position: absolute;
+  right: 30px;
+  display: flex;
+  gap: 20px;
+
+  & a {
+    display: block;
+    width: 50px;
+    height: 50px;
+    transition: all 0.3s ease;
+    &:hover {
+      transform: scale(110%);
+    }
+  }
+
+  @include sm {
+    position: relative;
+    top: 150px;
+    left: 0;
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  & img {
+    border-radius: 3px;
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+}

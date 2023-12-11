@@ -1,0 +1,106 @@
+@import '../../styles/MQ/breakpoints.scss';
+
+.account {
+  padding: 30px;
+  animation-name: opacityAnimation;
+  animation-duration: 3s;
+  background-color: #fff;
+  margin-bottom: 40px;
+
+  & .info {
+    text-align: center;
+    padding: 80px;
+
+    & .name {
+      padding-top: 30px;
+      text-align: end;
+      font-size: 20px;
+
+      @include sm {
+        text-align: center;
+      }
+    }
+  }
+}
+
+.data {
+  width: 100%;
+  padding: 0 50px;
+  @include sm {
+    padding: 0;
+  }
+  @include md {
+    padding: 0;
+  }
+}
+
+.content {
+  display: flex;
+  gap: 30px;
+
+  @include md {
+    flex-direction: column;
+  }
+
+  @include sm {
+    flex-direction: column;
+  }
+}
+
+.pages {
+  width: 400px;
+  @include sm {
+    width: 100%;
+  }
+  & .nav-list {
+    display: block;
+    padding: 0;
+    background-color: black;
+    color: #fff;
+
+    border-radius: 30px;
+    padding: 40px;
+  }
+
+  & li {
+    list-style-type: none;
+    color: #fff;
+    font-weight: 200;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+
+    &.active,
+    &:hover {
+      font-weight: 400;
+      opacity: 1;
+      cursor: pointer;
+    }
+  }
+}
+
+.signOutButton {
+  width: 300px;
+}
+
+.loaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.active {
+  color: #fff;
+  font-weight: 700;
+}
+
+@keyframes opacityAnimation {
+  0% {
+    opacity: 0;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

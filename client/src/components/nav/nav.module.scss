@@ -1,0 +1,98 @@
+@import '../../styles/MQ/breakpoints.scss';
+
+.list {
+  display: flex;
+  list-style: none;
+  width: fit-content;
+  margin: 0 auto;
+  transition: top 0.3s ease;
+  color: #fff;
+
+  &Header {
+    @include sm {
+      position: absolute;
+      top: 0;
+      right: 0;
+      flex-direction: column;
+      max-width: 80vw;
+      min-width: 350px;
+      height: 100vh;
+      background-color: #fff;
+      padding-top: 80px;
+      z-index: 100;
+      box-shadow:
+        0 4px 12px rgba(45, 44, 44, 0.2),
+        0 4px 12px rgba(45, 44, 44, 0.2);
+
+      & a {
+        color: black;
+      }
+    }
+  }
+
+  &Footer {
+    font-size: 11px;
+    @include sm {
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0;
+      padding-top: 80px;
+    }
+
+    @include md {
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0;
+      padding-top: 80px;
+
+      & a {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.item {
+  position: relative;
+  display: inline-block;
+  padding: 15px 30px;
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+
+  &::after {
+    content: 'xx';
+    color: transparent;
+    display: block;
+    border-top: 0.7px solid transparent;
+  }
+
+  &:hover {
+    &::after {
+      content: 'xx';
+      color: transparent;
+      display: block;
+      margin: 0 auto;
+      border-top: 0.7px solid transparent;
+      border-color: #fff;
+      animation-name: width_animation;
+      animation-duration: 0.3s;
+      animation-fill-mode: forwards;
+
+      @include sm {
+        border-color: black;
+      }
+    }
+  }
+}
+
+@keyframes width_animation {
+  0% {
+    width: 10%;
+  }
+  100% {
+    width: 100%;
+  }
+}

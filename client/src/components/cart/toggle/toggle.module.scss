@@ -1,0 +1,17 @@
+.toggle {
+  display: block;
+  width: 100%;
+  border: none;
+  text-decoration: none;
+  color: black;
+  background-color: #fff;
+  font-weight: 400;
+  font-size: 20px;
+  padding: 11px 0;
+  box-shadow: 0 5px 5px -5px rgba(45, 44, 44, 0.2);
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}

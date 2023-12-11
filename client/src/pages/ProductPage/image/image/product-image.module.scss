@@ -1,0 +1,63 @@
+@import '../../../../styles/MQ/breakpoints.scss';
+
+.image {
+  position: relative;
+  width: 50%;
+  height: 100%;
+  padding: 100px;
+
+  box-sizing: border-box;
+
+  @include sm {
+    width: 100%;
+    padding: 100px;
+  }
+
+  @media (min-width: 360px) and (max-width: 550px) {
+    padding: 30px;
+    width: 100%;
+  }
+
+  @include md {
+    height: 80%;
+    padding: 50px;
+  }
+  @include lg {
+    height: 80%;
+    padding: 50px;
+  }
+}
+
+.arrow {
+  position: absolute;
+  border: none;
+  background-color: transparent;
+  bottom: 50%;
+}
+
+.right {
+  right: 105px;
+  @media (min-width: 360px) and (max-width: 550px) {
+    right: 35px;
+  }
+
+  @include lg {
+    right: 55px;
+  }
+  @include md {
+    right: 55px;
+  }
+}
+.left {
+  left: 105px;
+  @media (min-width: 360px) and (max-width: 550px) {
+    left: 35px;
+  }
+
+  @include lg {
+    left: 55px;
+  }
+  @include md {
+    left: 55px;
+  }
+}

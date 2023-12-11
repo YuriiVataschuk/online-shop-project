@@ -1,0 +1,37 @@
+
+  .list {
+    margin: 0;
+    display: flex;
+    padding: 0;
+    list-style: none;
+    gap: 5px;
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-color: black;
+    color: rgb(98, 97, 97);
+    opacity: 0.8;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.6;
+      background-color: #fff;
+      border-color: black;
+    }
+  }
+
+  .isActive {
+    background-color: #fff;
+    border-color: black;
+    color: black;
+    opacity: 1;
+  }
+

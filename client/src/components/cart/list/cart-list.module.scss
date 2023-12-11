@@ -1,0 +1,14 @@
+@import '../../../styles/MQ/breakpoints.scss';
+
+.list {
+  display: block;
+  height: 65vh;
+  padding: 40px 0 0 40px;
+  overflow-y: scroll;
+  list-style: none;
+  box-shadow: 0 2px 8px rgba(45, 44, 44, 0.2);
+}
+
+.title {
+  margin-bottom: 40px;
+}

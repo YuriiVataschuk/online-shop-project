@@ -1,0 +1,29 @@
+.panel {
+  margin-left: 30px;
+}
+.quantity {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.value {
+  width: 50px;
+}
+
+.button {
+  margin-left: 16px;
+  width: 32px;
+  height: 32px;
+  background-color: black;
+  color: white;
+  border: 1px solid black;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: #fff;
+    color: black;
+  }
+}
+.price {
+  margin-top: 10px;
+}
