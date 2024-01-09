@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    image: your-django-app-image
+    container_name: your-django-app
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./backend/media:/vol/web/media
+    environment:
+      - DJANGO_DB_HOST=snuffleupagus.db.elephantsql.com
+      - DJANGO_DB_NAME=wckpjlwf
+      - DJANGO_DB_USER=wckpjlwf
+      - DJANGO_DB_PASSWORD=qSLeN3rgf5YJvTl9yq5uFrdRuWGn8exV
+    depends_on:
+      - db
+
+  db:
+    image: postgres:latest
+    container_name: your-postgres-db
+    environment:
+      - POSTGRES_DB=wckpjlwf
+      - POSTGRES_USER=wckpjlwf
+      - POSTGRES_PASSWORD=qSLeN3rgf5YJvTl9yq5uFrdRuWGn8exV
+
+#  frontend:
+#      build:
+#        context: ./client
+#        dockerfile: Dockerfile
+#      image: your-react-app-image
+#      container_name: your-react-app
+#      ports:
+#        - "3000:3000"

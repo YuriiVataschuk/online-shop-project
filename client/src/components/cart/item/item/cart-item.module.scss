@@ -1,0 +1,39 @@
+.item {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+
+.remove {
+  position: absolute;
+  left: -13px;
+  top: -13px;
+  background-color: #fff;
+  border: 1px solid gray;
+  border-radius: 50%;
+  padding: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(110%);
+  }
+}
+
+.img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100px;
+  border: 1px solid gray;
+  border-radius: 7px;
+  padding: 5px;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

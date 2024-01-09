@@ -1,0 +1,100 @@
+@import '../../../styles/MQ/breakpoints.scss';
+
+.panel {
+  padding: 100px 0;
+
+  @include sm {
+    padding: 30px;
+  }
+}
+
+.price {
+  width: fit-content;
+  padding: 0 30px;
+  font-size: 32px;
+  color: black;
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  margin-bottom: 40px;
+}
+
+.description {
+  margin-bottom: 40px;
+  font-weight: 200;
+  padding-right: 50px;
+}
+
+.sizes {
+  margin-bottom: 20px;
+}
+
+.quantity {
+  display: flex;
+  width: fit-content;
+  margin-bottom: 25px;
+  background-color: #fff;
+  border: 1px solid #fff;
+  overflow: hidden;
+  border-radius: 30px;
+
+  & button {
+    border: none;
+    background-color: black;
+    color: #fff;
+    padding: 10px 20px;
+    height: 50px;
+    transition: opacity 0.3s ease;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  & div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    width: 50px;
+  }
+}
+
+.addToCart {
+  display: block;
+  width: fit-content;
+  background-color: #fff;
+  color: black;
+  padding: 10px 70px;
+  height: 50px;
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  transition: all 0.8s ease;
+  margin-bottom: 40px;
+
+  @include sm {
+    width: 100%;
+  }
+
+  &:hover {
+    opacity: 0.6;
+    cursor: pointer;
+  }
+}
+
+.btnForInfomation {
+  border: 1px solid black;
+  border-radius: 30px;
+  display: inline-block;
+  padding: 10px 20px;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.disabled {
+  background-color: black;
+  color: #fff;
+}

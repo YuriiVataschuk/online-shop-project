@@ -1,0 +1,75 @@
+@import '../../../styles/MQ/breakpoints.scss';
+.dropdown {
+  position: relative;
+
+  button {
+    display: block;
+    color: inherit;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    @include sm {
+      color: black;
+    }
+  }
+
+  & ul {
+    position: absolute;
+    top: 42px;
+    background-color: #fff;
+    min-width: 100px;
+    padding: 30px 5px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(45, 44, 44, 0.2);
+    transition: all 0.3s ease;
+
+    & li {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: black;
+      cursor: pointer;
+
+      &::after {
+        content: 'xx';
+        color: transparent;
+        display: block;
+        border-top: 0.7px solid transparent;
+      }
+      &:hover {
+        &::after {
+          content: 'xx';
+          color: transparent;
+          display: block;
+          margin: 0 auto;
+          border-top: 0.7px solid transparent;
+          border-color: black;
+          animation-name: width_animation;
+          animation-duration: 0.5s;
+          animation-fill-mode: forwards;
+
+          @include sm {
+            border-color: black;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes width_animation {
+  0% {
+    width: 10%;
+  }
+  100% {
+    width: 100%;
+  }
+}

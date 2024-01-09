@@ -1,0 +1,35 @@
+.container {
+  position: relative;
+  border-radius: 30px;
+  overflow: hidden;
+  max-width: 400px;
+  min-width: 300px;
+  background-color: #fff;
+  width: 87vw;
+
+  max-width: 366px;
+  box-shadow:
+    0 4px 12px rgba(45, 44, 44, 0.2),
+    0 4px 12px rgba(45, 44, 44, 0.2);
+
+  z-index: 2000;
+  margin-bottom: 10px;
+
+  & p {
+    padding: 40px 30px;
+    text-align: center;
+    font-weight: 300;
+    color: black;
+  }
+}
+
+.line {
+  margin-bottom: 1px;
+  height: 5px;
+  background-color: #28a745;
+  border-radius: 7px;
+
+  &--denger {
+    background-color: #dc3545;
+  }
+}

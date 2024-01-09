@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,500;1,700&display=swap');
+@import '~bootstrap/scss/bootstrap';
+@import './styles/components/arrow.scss';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  width: 100%;
+  overflow-x: hidden;
+  font-family: Roboto;
+  box-sizing: border-box;
+  background-color: black;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}
+li {
+  list-style-type: none;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.danger {
+  box-shadow:
+    0 1px 4px rgba(245, 88, 88, 0.3),
+    0 0 15px rgba(245, 88, 88, 0.3);
+}
+
+.modal-content {
+  border-radius: 30px;
+}
+
+@keyframes phoneIconBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.phone-icon {
+  width: 32px;
+  height: 32px;
+  background-image: url('../public/call.png');
+  animation: phoneIconBlink 2s ease-in-out infinite;
+  animation-timing-function: steps(1);
+}
+
+.fade-enter {
+  opacity: 0.01;
+  transform: translateY(20px);
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 300ms ease-in,
+    transform 300ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-exit-active {
+  opacity: 0.01;
+  transform: translateY(20px);
+  transition:
+    opacity 300ms ease-in,
+    transform 300ms ease-in;
+}
