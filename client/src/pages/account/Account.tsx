@@ -56,7 +56,7 @@ export const Account = () => {
     if (tab === 'orders' && orderHistory.length === 0) {
       setIsLoadingOrders(true)
 
-      fetch('http://127.0.0.1:8000/api/shop/cart/user_carts/', {
+      fetch('https://online-shop-noih.onrender.com/api/shop/cart/user_carts/', {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,

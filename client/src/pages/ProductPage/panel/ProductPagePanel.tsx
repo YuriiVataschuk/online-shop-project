@@ -62,14 +62,16 @@ export const ProductPagePanel: React.FC<Props> = ({ product, isBlack }) => {
         {product?.description[isEng ? 'EN' : 'UA']}
       </p>
 
-      <div className={styles.sizes}>
-        <span style={styleObject}>
-          {isEng ? 'Chose a size:' : 'Oберіть розмір'}{' '}
-        </span>{' '}
-        {product && (
-          <SizeList sizes={product.sizes} size={size} setSize={setSize} />
-        )}
-      </div>
+      {!path.includes('bag') && (
+        <div className={styles.sizes}>
+          <span style={styleObject}>
+            {isEng ? 'Chose a size:' : 'Oберіть розмір'}{' '}
+          </span>{' '}
+          {product && (
+            <SizeList sizes={product.sizes} size={size} setSize={setSize} />
+          )}
+        </div>
+      )}
       <span style={styleObject}>{isEng ? 'Quantity:' : 'Кількість'}</span>
       <div className={styles.quantity}>
         <button

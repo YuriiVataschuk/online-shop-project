@@ -4,7 +4,7 @@ import { loocalStorage } from '../utils/localStorage'
 const { value, setValue } = loocalStorage('token', '')
 
 export const initPerson = createAsyncThunk('fetch/person', (token: string) => {
-  const url = 'http://127.0.0.1:8000/user/me/'
+  const url = 'https://online-shop-noih.onrender.com/user/me/'
   return fetch(url, {
     method: 'GET',
     headers: {
